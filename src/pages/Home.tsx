@@ -51,7 +51,7 @@ const Home: React.FC = () => {
 
             </div>
 
-            <IonButton className="boton-home">
+            <IonButton className="boton-home" routerLink="/principal">
               PARA INGRESAR HAGA CLICK AQUÍ
             </IonButton>
 
