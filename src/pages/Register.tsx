@@ -14,10 +14,41 @@ import './Register.css';
 const Register: React.FC = () => {
 
   const regiones = [
-    "Valparaíso"
+    "Tarapacá",
+    "Antofagasta",
+    "Atacama",
+    "Coquimbo",
+    "Valparaíso",
+    "Región Metropolitana",
+    "O'Higgins",
+    "Maule",
+    "Ñuble",
+    "Biobío",
+    "La Araucanía",
+    "Los Ríos",
+    "Los Lagos",
+    "Aysén",
+    "Magallanes"
   ];
   const comunas = [
-    "Valparaíso"
+    "Arica",
+    "Iquique",
+    "Antofagasta",
+    "Copiapó",
+    "La Serena",
+    "Calama",
+    "Valparaíso",
+    "Viña del Mar",
+    "Santiago",
+    "Rancagua",
+    "Talca",
+    "Chillán",
+    "Concepción",
+    "Temuco",
+    "Valdivia",
+    "Puerto Montt",
+    "Coyhaique",
+    "Punta Arenas"
   ];
 
   const [userName, setUserName] = useState('');
@@ -44,25 +75,30 @@ const Register: React.FC = () => {
               Registro de cuenta
             </IonText>
 
-            <div className="entrada-register">
+            <div className="row-register">
 
-              <IonInput 
-                type = "text"
-                value = {userName}
-                placeholder="Usuario"
-                onIonChange={(e) => setUserName(e.detail.value!)}
-              />
+              <div className="entrada-register">
 
-            </div>
+                <IonInput 
+                  type = "text"
+                  value = {userName}
+                  placeholder="Usuario"
+                  onIonChange={(e) => setUserName(e.detail.value!)}
+                />
 
-            <div className="entrada-register">
+              </div>
 
-              <IonInput 
-                type = "text"
-                value = {rut}
-                placeholder="RUT"
-                onIonChange={(e) => setRut(e.detail.value!)}
-              />
+              <div className="entrada-register">
+
+                <IonInput 
+                  type = "text"
+                  value = {rut}
+                  placeholder="RUT"
+                  onIonChange={(e) => setRut(e.detail.value!)}
+                />
+
+
+              </div>
 
             </div>
 
@@ -77,48 +113,54 @@ const Register: React.FC = () => {
 
             </div>
 
-            <div className="selector-register">
+            <div className="row-register">
+
+              <div className="selector-register">
+
                 <IonSelect
-                    value={region}
-                    placeholder="Región"
-                    interface="popover"
-                    onIonChange={(e) => setRegion(e.detail.value)}
-                >
+                  value={region}
+                  placeholder="Región"
+                  interface="popover"
+                  onIonChange={(e) => setRegion(e.detail.value)}
+                  >
 
-                    {regiones.map((item, index) => (
+                  {regiones.map((item, index) => (
 
-                        <IonSelectOption 
-                        key={index}
-                        value={item}
-                        >
-                            {item}
-                        </IonSelectOption>
+                    <IonSelectOption 
+                    key={index}
+                    value={item}
+                    >
+                      {item}
+                    </IonSelectOption>
 
-                    ))}
+                  ))}
                 
                 </IonSelect>
-            </div>
 
-            <div className="selector-register">
+              </div>
+
+              <div className="selector-register">
                 <IonSelect
-                    value={region}
-                    interface="popover"
-                    placeholder="Comuna"
-                    onIonChange={(e) => setRegion(e.detail.value)}
-                >
+                  value={comuna}
+                  interface="popover"
+                  placeholder="Comuna"
+                  onIonChange={(e) => setComuna(e.detail.value)}
+                  >
 
-                    {comunas.map((item, index) => (
+                  {comunas.map((item, index) => (
 
-                        <IonSelectOption 
-                        key={index}
-                        value={item}
-                        >
-                            {item}
-                        </IonSelectOption>
+                    <IonSelectOption 
+                      key={index}
+                      value={item}
+                      >
+                        {item}
+                    </IonSelectOption>
 
-                    ))}
+                  ))}
                 
                 </IonSelect>
+
+              </div>
 
             </div>
 
@@ -143,7 +185,7 @@ const Register: React.FC = () => {
             </div>
 
             <IonButton className="boton-register">
-              Registrar
+              PARA REGISTRARSE HAGA CLICK AQUÍ
             </IonButton>
 
             <IonButton className="login-register" routerLink="/home">

@@ -52,7 +52,7 @@ const Home: React.FC = () => {
             </div>
 
             <IonButton className="boton-home">
-              LOG IN
+              PARA INGRESAR HAGA CLICK AQUÍ
             </IonButton>
 
             <IonButton className="registro-home" routerLink="/register">
