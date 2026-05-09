@@ -19,12 +19,20 @@ import { IonContent,
 
 import { useState } from 'react';
 
-import './Principal.css';
+import {
+    TransformWrapper,
+    TransformComponent
+} from "react-zoom-pan-pinch";
 
-const Principal: React.FC = () => {
+import mapa from '../assets/images/mapa.png';
 
-  return (
-    <>
+import './Map.css';
+
+const Map: React.FC = () => {
+
+    return (
+
+        <>
         <IonMenu contentId="main-content" className="lateral-menu-principal">
 
             <IonContent className="content-menu-principal">
@@ -101,11 +109,30 @@ const Principal: React.FC = () => {
 
             </IonHeader>
 
+            <div className="mapa-container-map">
+
+                <TransformWrapper>
+
+                    <TransformComponent>
+
+                        <img
+                            src={mapa}
+                            alt="Mapa"
+                            className="mapa-imagen-map"
+                        />
+
+                    </TransformComponent>
+
+                </TransformWrapper>
+
+            </div>
+
           </IonContent>
 
         </IonPage>
     </>
-  );
+
+    );
 };
 
-export default Principal;
+export default Map;
