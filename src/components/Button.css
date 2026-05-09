@@ -1,0 +1,11 @@
+.boton-principal {
+
+    --background: #0D678E;
+
+    --color: black;
+
+    --border-radius: 10px;
+
+    font-size: 18px;
+
+}

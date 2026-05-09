@@ -1,4 +1,4 @@
-import { IonContent,
+import {IonContent,
   IonPage,
   IonButton,
   IonInput,
@@ -188,7 +188,7 @@ const Register: React.FC = () => {
               PARA REGISTRARSE HAGA CLICK AQUÍ
             </IonButton>
 
-            <IonButton className="login-register" routerLink="/home">
+            <IonButton className="login-register" routerLink="/login">
               ¿Ya estás registrado? Ingresa acá
             </IonButton>
 

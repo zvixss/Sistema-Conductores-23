@@ -1,23 +1,6 @@
-import { IonContent,
+import {IonContent,
   IonPage,
-  IonButton,
-  IonInput,
-  IonText,
-  IonToolbar,
-  IonHeader,
-  IonSelect,
-  IonSelectOption,
-  IonButtons,
-  IonTitle,
-  IonMenu,
-  IonMenuToggle,
-  IonMenuButton,
-  IonList,
-  IonItem,
-  IonLabel
 } from '@ionic/react';
-
-import { useState } from 'react';
 
 import {
     TransformWrapper,
@@ -27,110 +10,53 @@ import {
 import mapa from '../assets/images/mapa.png';
 
 import './Map.css';
+import ToolbarHome from '../components/ToolbarHome';
+import MenuLateral from '../components/MenuLateral';
 
 const Map: React.FC = () => {
 
     return (
 
         <>
-        <IonMenu contentId="main-content" className="lateral-menu-principal">
+            <MenuLateral />
 
-            <IonContent className="content-menu-principal">
+            <IonPage id="main-content">
 
-                <div className="header-menu-principal">
+                <ToolbarHome />
 
-                    <IonText className="titulo-menu-principal">
-                        MENÚ
-                    </IonText>
+                <IonContent fullscreen className="fondo">
 
-                </div>
+                    <div className="mapa-container-map">
 
-                <div className="options-menu-principal">
+                        <TransformWrapper>
 
-                    <IonMenuToggle autoHide={false}>
+                            initialScale={1}
 
-                        <IonItem button className="item-menu-principal" routerLink="/principal">
-                            <IonLabel>Página principal</IonLabel>
-                        </IonItem>
+                            minScale={0.5}
 
-                       <IonItem button className="item-menu-principal" routerLink="/map">
-                           <IonLabel>Mapa Interactivo centros</IonLabel>
-                        </IonItem>
+                            maxScale={4}
 
-                        <IonItem button className="item-menu-principal">
-                           <IonLabel>Mis agendas</IonLabel>
-                        </IonItem>
+                            wheel={{ step: 0.2 }}
 
-                        <IonItem button className="item-menu-principal">
-                           <IonLabel>Mi Trayectoria</IonLabel>
-                        </IonItem>
+                            <TransformComponent>
 
-                    </IonMenuToggle>
+                                <img
+                                    src={mapa}
+                                    alt="Mapa"
+                                    className="mapa-imagen-map"
+                                />
 
-                </div>
+                            </TransformComponent>
 
-            </IonContent>
+                        </TransformWrapper>
 
-        </IonMenu>
+                    </div>
 
-        <IonPage id="main-content">
+                </IonContent>
 
-          <IonContent fullscreen className="fondo">
+            </IonPage>
 
-            <IonHeader>
-
-                <IonToolbar className="toolbar-principal">
-
-                    <IonButtons slot="start" className="left-buttons">
-
-                        <IonMenuToggle className="boton-principal">
-
-                            <IonButton className="boton-principal">
-                                MENU
-                            </IonButton>
-
-                        </IonMenuToggle>
-
-                 </IonButtons>
-
-                    <IonTitle className="nombre-principal">
-                        ConduceFácil
-                    </IonTitle>
-
-                    <IonButtons slot="end" className="right-buttons">
-
-                        <IonButton className="boton-principal">
-                            PERFIL
-                        </IonButton>
-
-                    </IonButtons>
-
-                </IonToolbar>
-
-            </IonHeader>
-
-            <div className="mapa-container-map">
-
-                <TransformWrapper>
-
-                    <TransformComponent>
-
-                        <img
-                            src={mapa}
-                            alt="Mapa"
-                            className="mapa-imagen-map"
-                        />
-
-                    </TransformComponent>
-
-                </TransformWrapper>
-
-            </div>
-
-          </IonContent>
-
-        </IonPage>
-    </>
+        </>
 
     );
 };

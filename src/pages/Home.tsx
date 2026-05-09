@@ -1,69 +1,27 @@
-import { IonContent,
+import {IonContent,
   IonPage,
-  IonButton,
-  IonInput,
-  IonText,
 } from '@ionic/react';
 
-import { useState } from 'react';
-
 import './Home.css';
+import MenuLateral from '../components/MenuLateral';
+import ToolbarHome from '../components/ToolbarHome';
 
 const Home: React.FC = () => {
 
-  const [user, setUser] = useState('');
-  const [password, setPassword] = useState('');
-
   return (
-    <IonPage>
-      <IonContent fullscreen className="fondo">
+    <>
+        <MenuLateral />
 
-      <IonText className="nombre-home">
-        ConduceFácil
-      </IonText>
+        <IonPage id="main-content">
 
-        <div className="container-home">
+            <ToolbarHome />
 
-          <div className="panel-home">
-          
-            <IonText className="titulo-home">
-              Ingresa a tu cuenta
-            </IonText>
+            <IonContent fullscreen className="fondo">
 
-            <div className="entrada-home">
+            </IonContent>
 
-              <IonInput 
-                type = "text"
-                value = {user}
-                placeholder="Usuario / RUT / Correo"
-                onIonChange={(e) => setUser(e.detail.value!)}
-              />
-
-            </div>
-
-            <div className="entrada-home">
-              <IonInput 
-                type = "password"
-                value = {password}
-                placeholder="Contraseña"
-                onIonChange={(e) => setPassword(e.detail.value!)}
-              />
-
-            </div>
-
-            <IonButton className="boton-home" routerLink="/principal">
-              PARA INGRESAR HAGA CLICK AQUÍ
-            </IonButton>
-
-            <IonButton className="registro-home" routerLink="/register">
-              ¿No estás registrado? Registrater acá
-            </IonButton>
-
-          </div>
-
-        </div>
-      </IonContent>
-    </IonPage>
+        </IonPage>
+    </>
   );
 };
 
