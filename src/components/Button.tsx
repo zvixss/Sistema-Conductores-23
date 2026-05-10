@@ -41,7 +41,7 @@ const Button: React.FC<ButtonProps> = ({
     background,
     fontSize,
     fontFamily,
-    textColor,
+    textColor = '#0D678E',
     onClick,
 }) => {
     return (

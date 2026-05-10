@@ -1,0 +1,15 @@
+.file-input-agendar {
+    margin-top: 20px;
+
+    padding: 10px;
+
+    border: 2px dashed white;
+
+    border-radius: 5px;
+
+    background-color: transparent;
+
+    color: black;
+
+    cursor: pointer;
+}

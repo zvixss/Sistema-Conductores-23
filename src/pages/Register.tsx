@@ -10,6 +10,7 @@ import {IonContent,
 import { useState } from 'react';
 
 import './Register.css';
+import Button from '../components/Button';
 
 const Register: React.FC = () => {
 
@@ -184,9 +185,14 @@ const Register: React.FC = () => {
 
             </div>
 
-            <IonButton className="boton-register">
-              PARA REGISTRARSE HAGA CLICK AQUÍ
-            </IonButton>
+            <Button
+              texto="PARA REGISTRARSE HAGA CLICK AQUÍ"
+              talla="large"
+              ancho="250px"
+              fontSize="15px"
+              textColor="black"
+              routerLink="/login"
+            />
 
             <IonButton className="login-register" routerLink="/login">
               ¿Ya estás registrado? Ingresa acá

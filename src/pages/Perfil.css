@@ -1,0 +1,97 @@
+.fondo-perfil {
+
+    --background: white;
+
+}
+
+.container-perfil {
+
+    display: flex;
+
+    flex-direction: row;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    width: 100%;
+
+    padding-top: 40px;
+}
+
+.columns-perfil {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 350px;
+
+    gap: 50px;
+
+}
+
+.column-perfil {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+}
+
+.column-perfil ion-label {
+
+    font-size: 25px;
+
+    font-weight: bold;
+
+    color:black;
+}
+
+.column-perfil ion-text {
+
+    font-size: 20px;
+
+    color:black;
+}
+
+.titulo-perfil {
+
+    font-size: 35px;
+
+    font-family: 'K2D', sans-serif;
+
+    color: black;
+
+}
+
+.buttons-perfil {
+
+    position: absolute;
+
+    display: flex;
+
+    flex-direction: row;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    bottom: 10px;
+
+    padding-left: 10px;
+
+    padding-right: 10px;
+
+}

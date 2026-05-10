@@ -29,9 +29,7 @@ const ToolbarHome: React.FC = () => {
         </IonButtons>
 
         <IonTitle className="name">
-
           ConduceFácil
-
         </IonTitle>
 
         <IonButtons
@@ -39,7 +37,7 @@ const ToolbarHome: React.FC = () => {
           className="right-buttons"
         >
 
-          <IonButton className="button">
+          <IonButton className="button" routerLink="/perfil">
             PERFIL
           </IonButton>
 

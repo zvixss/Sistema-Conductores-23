@@ -34,7 +34,7 @@ const MenuLateral: React.FC = () => {
               className="item-menu"
               routerLink="/home"
             >
-              <IonLabel>Página principal</IonLabel>
+              <IonLabel>Página Principal</IonLabel>
             </IonItem>
 
             <IonItem
@@ -42,7 +42,15 @@ const MenuLateral: React.FC = () => {
               className="item-menu"
               routerLink="/map"
             >
-              <IonLabel>Mapa interactivo</IonLabel>
+              <IonLabel>Mapa Interactivo</IonLabel>
+            </IonItem>
+
+            <IonItem
+              button
+              className="item-menu"
+              routerLink="/agendar-examen"
+            >
+              <IonLabel>Agendar Examen</IonLabel>
             </IonItem>
 
           </IonMenuToggle>

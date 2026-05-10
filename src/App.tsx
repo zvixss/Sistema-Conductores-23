@@ -5,6 +5,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Home from './pages/Home';
 import Map from './pages/Map';
+import Perfil from './pages/Perfil';
+import AgendarExamen from './pages/AgendarExamen';
+import AgendarExamenPL from './pages/AgendarExamenPL';
+import AgendarExamenAL from './pages/AgendarExamenAL';
+import AgendarExamenR from './pages/AgendarExamenR';
+import EditarUsuario from './pages/EditarUsuario';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -56,6 +62,24 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/map">
           <Map />
+        </Route>
+        <Route exact path="/perfil">
+          <Perfil />
+        </Route>
+        <Route exact path="/agendar-examen">
+          <AgendarExamen />
+        </Route>
+        <Route exact path="/agendar-examen-pl">
+          <AgendarExamenPL />
+        </Route>
+        <Route exact path="/agendar-examen-al">
+          <AgendarExamenAL />
+        </Route>
+        <Route exact path="/agendar-examen-r">
+          <AgendarExamenR />
+        </Route>
+        <Route exact path="/editar-usuario">
+          <EditarUsuario />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

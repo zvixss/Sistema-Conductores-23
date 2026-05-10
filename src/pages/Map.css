@@ -10,6 +10,14 @@
 
 }
 
+.mapa-wrapper-map {
+
+    position: relative;
+
+    width: fit-content;
+
+}
+
 .mapa-imagen-map {
 
     width: 2500px;
@@ -17,5 +25,31 @@
     user-select: none;
   
     cursor: grab;
+
+}
+
+.punto-map {
+
+    position: absolute;
+
+    width: 30px;
+
+    height: 30px;
+
+    background: red;
+
+    border-radius: 50%;
+
+    font-size: 12px;
+
+    cursor: pointer;
+
+}
+
+.punto1-map {
+
+    top: 120px;
+
+    left: 170px;
 
 }

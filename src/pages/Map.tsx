@@ -18,17 +18,17 @@ const Map: React.FC = () => {
     return (
 
         <>
-            <MenuLateral />
+            <MenuLateral/>
 
             <IonPage id="main-content">
 
-                <ToolbarHome />
+                <ToolbarHome/>
 
                 <IonContent fullscreen className="fondo">
 
                     <div className="mapa-container-map">
 
-                        <TransformWrapper>
+                        <TransformWrapper
 
                             initialScale={1}
 
@@ -37,14 +37,23 @@ const Map: React.FC = () => {
                             maxScale={4}
 
                             wheel={{ step: 0.2 }}
+                        >
 
                             <TransformComponent>
 
-                                <img
-                                    src={mapa}
-                                    alt="Mapa"
-                                    className="mapa-imagen-map"
-                                />
+                                <div className="mapa-wrapper-map">
+
+                                    <img
+                                        src={mapa}
+                                        alt="Mapa"
+                                        className="mapa-imagen-map"
+                                    />
+
+                                    <button className="punto-map punto1-map">
+                                        o
+                                    </button>
+
+                                </div>
 
                             </TransformComponent>
 

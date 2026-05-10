@@ -1,40 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@800&display=swap');
 
-.nombre-register {
-
-    position: absolute;
-
-    background: white;
-
-    left: 70px;
-
-    top: 320px;
-
-    font-size: 80px;
-
-    font-family: 'K2D', sans-serif;
-
-    color: #0D678E;
-
-}
-
-.container-register {
+.container-editar {
 
     display: flex;
 
-    justify-content: flex-end;
+    justify-content: center;
 
     align-items: center;
 
     height: 100vh;
 
-    padding-right: 120px;
-
 }
 
-.panel-register {
+.panel-editar {
 
-    width: 650px;
+    width: 600px;
     
     padding:40px;
 
@@ -54,7 +34,7 @@
 
 }
 
-.titulo-register {
+.titulo-editar {
 
     font-size: 30px;
 
@@ -62,11 +42,11 @@
 
 }
 
-.row-register {
+.row-editar {
 
     display: flex;
 
-    width: 70%;
+    width: 80%;
 
     gap: 10px;
 
@@ -74,9 +54,9 @@
 
 }
 
-.entrada-register {
+.entrada-editar {
 
-    width: 400px;
+    width: 420px;
 
     border-radius: 10px;
     
@@ -98,7 +78,7 @@
 
 }
 
-.selector-register {
+.selector-editar {
     
     border-radius: 10px;
 
@@ -120,7 +100,7 @@
 
 }
 
-.boton-register {
+.boton-editar {
 
     width: 250px;
 
@@ -136,18 +116,16 @@
 
 }
 
-.login-register::part(native) {
+.login-editar {
 
-    background: transparent;
+    --background: transparent;
 
-    box-shadow: none;
+    --box-shadow: none;
 
     font-size: 13px;
 
     text-decoration: underline;
 
-    color: #006089;
-
-    padding: 0px;
+    --color: #006089;
 
 }

@@ -1,0 +1,17 @@
+.select-agendar {
+
+    width: 200px;
+
+    padding: 10px;
+
+    border: 2px solid white;
+
+    border-radius: 5px;
+
+    background-color: transparent;
+
+    color: black;
+
+    cursor: pointer;
+
+}

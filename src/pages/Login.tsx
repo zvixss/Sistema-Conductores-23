@@ -9,6 +9,7 @@ import { useState } from 'react';
 
 import './Login.css';
 import Button from '../components/Button';
+import ButtonLink from '../components/ButtonLink';
 
 const Login: React.FC = () => {
 
@@ -61,13 +62,15 @@ const Login: React.FC = () => {
               routerLink="/home"
             />
 
-            <IonButton className="registro-login" routerLink="/register">
-              ¿No estás registrado? Registrater acá
-            </IonButton>
+            <ButtonLink 
+              texto="¿No estás registrado? Registrater acá"
+              routerLink="/register"
+            />
 
           </div>
 
         </div>
+        
       </IonContent>
     </IonPage>
   );
