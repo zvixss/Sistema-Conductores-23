@@ -22,47 +22,51 @@ const AgendarExamen: React.FC = () => {
 
                 <div className="container-agendar">
 
-                    <IonText className="titulo-agendar">
-                        Agendar Examen
-                    </IonText>
+                    <div className="panel-agendar">
 
-                    <IonText className="text-agendar">
-                        Seleccione la razon por la que quiere agendar examen:
-                    </IonText>
+                        <IonText className="titulo-agendar">
+                            Agendar Examen
+                        </IonText>
 
-                    <div className="option-container-agendar">
+                        <IonText className="text-agendar">
+                            Seleccione la razon por la que quiere agendar examen:
+                        </IonText>
 
-                        <Button
-                            texto="Primera Licencia Clase B"
-                            ancho="250px"
-                            background="#420991"
-                            textColor='black'
-                            routerLink="/agendar-examen-pl"
-                        />
+                        <div className="option-container-agendar">
 
-                        <Button
-                            texto="Primera Licencia Clase C"
-                            ancho="250px"
-                            background="#420991"
-                            textColor='black'
-                            routerLink="/agendar-examen-pl"
-                        />
+                            <Button
+                                texto="Primera Licencia Clase B"
+                                ancho="100%"
+                                background="#420991"
+                                textColor='black'
+                                routerLink="/agendar-examen-pl"
+                            />
 
-                        <Button
-                            texto="Renovación de Licencia"
-                            ancho="250px"
-                            background="#420991"
-                            textColor='black'
-                            routerLink="/agendar-examen-al"
-                        />
+                            <Button
+                                texto="Primera Licencia Clase C"
+                                ancho="100%"
+                                background="#420991"
+                                textColor='black'
+                                routerLink="/agendar-examen-pl"
+                            />
 
-                        <Button
-                            texto="Extensión de Licencia"
-                            ancho="250px"
-                            background="#420991"
-                            textColor='black'
-                            routerLink="/agendar-examen-al"
-                        />
+                            <Button
+                                texto="Renovación de Licencia"
+                                ancho="100%"
+                                background="#420991"
+                                textColor='black'
+                                routerLink="/agendar-examen-al"
+                            />
+
+                            <Button
+                                texto="Extensión de Licencia"
+                                ancho="100%"
+                                background="#420991"
+                                textColor='black'
+                                routerLink="/agendar-examen-al"
+                            />
+
+                        </div>
 
                     </div>
 

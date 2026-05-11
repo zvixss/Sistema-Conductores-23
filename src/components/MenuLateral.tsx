@@ -53,6 +53,14 @@ const MenuLateral: React.FC = () => {
               <IonLabel>Agendar Examen</IonLabel>
             </IonItem>
 
+            <IonItem
+              button
+              className="item-menu"
+              routerLink="/notificaciones"
+            >
+              <IonLabel>Notificaciones</IonLabel>
+            </IonItem>
+
           </IonMenuToggle>
 
         </div>

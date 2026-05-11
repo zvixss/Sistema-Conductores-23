@@ -1,10 +1,12 @@
 import {IonContent,
   IonPage,
-  IonButton,
   IonInput,
   IonText,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
+  IonItem,
+  IonCheckbox,
+  IonLabel
 } from '@ionic/react';
 
 import { useState } from 'react';
@@ -53,12 +55,13 @@ const EditarUsuario: React.FC = () => {
   ];
 
   const [userName, setUserName] = useState('');
-  const [rut, setRut] = useState('');
+  const [telefono, setTelefono] = useState('');
   const [correo, setCorreo] = useState('');
   const [region, setRegion] = useState('');
   const [comuna, setComuna] = useState('');
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
+  const [aceptado, setAceptado] = useState(false);
 
   return (
 
@@ -91,9 +94,9 @@ const EditarUsuario: React.FC = () => {
 
                             <IonInput 
                               type = "text"
-                              value = {rut}
-                              placeholder="RUT"
-                              onIonChange={(e) => setRut(e.detail.value!)}
+                              value = {telefono}
+                              placeholder="Telefono"
+                              onIonChange={(e) => setTelefono(e.detail.value!)}
                             />
 
 
@@ -186,14 +189,51 @@ const EditarUsuario: React.FC = () => {
 
                     </div>
 
-                    <Button
-                        texto="GUARDAR CAMBIOS"
-                        talla="large"
-                        ancho="200px"
-                        fontSize="20px"
-                        textColor="black"
-                        routerLink="/perfil"
-                    />
+                    <IonItem className="checkBox-editar">
+                    
+                        <IonCheckbox 
+                                
+                            checked={aceptado}
+                    
+                            onIonChange={(e) => setAceptado(e.detail.checked)}
+                                
+                        />
+                    
+                        <IonLabel>
+                    
+                            Acepto que no  puedo realizar cambios en 30 días
+                    
+                        </IonLabel>
+                    
+                    </IonItem>
+
+                    <div className="row-editar-usuario">
+
+                        <Button
+                            texto="Atras"
+                            talla="large"
+                            ancho="200px"
+                            fontSize="20px"
+                            textColor="black"
+                            background="red"
+                            routerLink="/perfil"
+                        />
+
+                        <Button
+                            texto="GUARDAR CAMBIOS"
+                            talla="large"
+                            ancho="200px"
+                            fontSize="20px"
+                            textColor="black"
+                            disabled={!aceptado}
+                            routerLink="/login"
+                        />
+
+                    </div>
+
+                    <IonText className="texto_editar-usuario">
+                        *Usted tendrá que entrar a su cuenta nuevamente
+                    </IonText>
 
                 </div>
 

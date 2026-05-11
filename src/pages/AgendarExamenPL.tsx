@@ -1,6 +1,7 @@
 import {IonContent,
   IonPage,
   IonText,
+  IonLabel
 } from '@ionic/react';
 
 import './AgendarExamenPL.css';
@@ -23,51 +24,57 @@ const AgendarExamenPL: React.FC = () => {
 
             <IonContent fullscreen className="fondo">
 
-                <div className="container-agendar">
+                <div className="container-agendar-pl">
 
-                    <IonText className="titulo-agendar">
-                        Agendar Examen
-                    </IonText>
+                    <div className="panel-agendar-pl">
 
-                    <IonText className="text-agendar">
-                        Como es su primera licencia, debe realizar el examen en la municipalidad de su comuna.
-                    </IonText>
+                        <IonText className="titulo-agendar-pl">
+                            Agendar Examen
+                        </IonText>
 
-                    <IonText className="text-agendar">
-                        Municopalidad de ... ubicada en ... horarios de atención ...
-                    </IonText>
+                        <IonText className="text-agendar-pl">
+                            Como es su primera licencia, debe realizar el examen en la municipalidad de su comuna.
+                        </IonText>
 
-                    <IonText className="text-agendar">
-                        Para agendar debe presentar un documento de residencia válido. Por favor, suba su documento de residencia a continuación:
-                    </IonText>
+                        <IonText className="text-agendar-pl">
+                            Municopalidad de ... ubicada en ... horarios de atención ...
+                        </IonText>
 
-                    <input 
+                        <IonText className="text-agendar-pl">
+                            Para agendar debe presentar un documento de residencia válido. Por favor, suba su documento de residencia a continuación:
+                        </IonText>
 
-                        className="file-input-agendar"
-                        type="file"
+                        <label className="file-input-agendar-pl">
 
-                        onChange={(e) => {
+                            <input
+                                type="file"
 
-                            const documentoResidencia = e.target.files?.[0];
+                                onChange={(e) => {
 
-                            if (documentoResidencia) {
+                                    const documentoResidencia = e.target.files?.[0];
 
-                                setArchivo(documentoResidencia);
+                                    if (documentoResidencia) {
 
-                            }
+                                        setArchivo(documentoResidencia);
 
-                        }}
+                                    }
 
-                    />
+                                }}
 
-                    <Button
-                        texto="Subir Documento"
-                        ancho="200px"
-                        background="#420991"
-                        textColor="black"
-                        routerLink="/agendar-examen-r"
-                    />
+                            />
 
+                        </label>
+
+                        <Button
+                            texto="Subir Documento"
+                            ancho="200px"
+                            background="#420991"
+                            textColor="black"
+                            routerLink="/agendar-examen-r"
+                        />
+
+                    </div>
+                    
                 </div>
 
             </IonContent>

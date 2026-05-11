@@ -20,9 +20,9 @@ const Login: React.FC = () => {
     <IonPage>
       <IonContent fullscreen className="fondo">
 
-      <IonText className="nombre-login">
-        ConduceFácil
-      </IonText>
+      <div className="layout-login">
+
+        <div className="left-login">
 
         <div className="container-login">
 
@@ -55,8 +55,8 @@ const Login: React.FC = () => {
 
             <Button
               texto="PARA INGRESAR HAGA CLICK AQUÍ"
-              talla="large"
-              ancho="250px"
+              expand='block'
+              ancho="100%"
               fontSize="15px"
               textColor="black"
               routerLink="/home"
@@ -67,7 +67,19 @@ const Login: React.FC = () => {
               routerLink="/register"
             />
 
+            </div>
+
+            </div>
+
           </div>
+
+          <div className="right-login">
+
+        <IonText className="nombre-login">
+          ConduceFácil
+        </IonText>
+
+        </div>
 
         </div>
         

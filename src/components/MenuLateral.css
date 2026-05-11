@@ -8,11 +8,9 @@ ion-menu::part(container) {
 
 }
 
-.menu-lateral {
+.lateral-menu {
 
-    --width: 430px;
-
-    --background: transparent;
+    --width: 360px;
 
 }
 
@@ -27,6 +25,8 @@ ion-menu::part(container) {
     border-bottom-right-radius: 80px;
 
     overflow: hidden;
+
+    padding-top: 20px;
 }
 
 .header-menu {
@@ -36,8 +36,6 @@ ion-menu::part(container) {
     flex-direction: column;
 
     align-items: center;
-
-    justify-content: center;
 
     margin-top: 40px;
 
@@ -63,9 +61,7 @@ ion-menu::part(container) {
 
     gap: 35px;
 
-    padding-left: 30px;
-
-    padding-right: 20px;
+    padding: 0 20px;
 
 }
 
@@ -75,8 +71,54 @@ ion-menu::part(container) {
 
     --color: white;
 
-    font-size: 20px;
+    border-radius: 15px;
+
+    font-size: 18px;
 
     font-weight: bold;
+
+    min-height: 55px;
+
+    transition: 0.2s ease;
+
+}
+
+@media (max-width: 768px) {
+
+    .lateral-menu {
+
+        --width: 80%;
+
+    }
+
+    .content-menu {
+
+        border-top-right-radius: 35px;
+
+        border-bottom-right-radius: 35px;
+
+    }
+
+    .titulo-menu {
+
+        font-size: 28px;
+
+    }
+
+    .options-menu {
+
+        gap: 14px;
+
+        padding: 0 15px;
+
+    }
+
+    .item-menu {
+
+        font-size: 16px;
+
+        min-height: 48px;
+
+    }
 
 }

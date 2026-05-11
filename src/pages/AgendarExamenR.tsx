@@ -23,25 +23,29 @@ const AgendarExamenR: React.FC = () => {
 
                 <div className="container-agendar">
 
-                    <IonText className="titulo-agendar">
-                        Agendar Examen Realizado
-                    </IonText>
+                    <div className="panel-agendar">
 
-                    <IonText className="text-agendar">
-                        Se ha agendado su examen de manera exitosa. Por favor, 
-                        revise su correo electrónico para más detalles sobre la fecha, 
-                        hora y lugar del examen. Tambien se le enviará un recordatorio 
-                        a través de su correo electrónico registrado sobre la fecha, 
-                        hora y lugar del examen.
-                    </IonText>
+                        <IonText className="titulo-agendar">
+                            Agendar Examen Realizado
+                        </IonText>
 
-                    <Button
-                        texto="Finalizar Agendamiento"
-                        ancho="200px"
-                        background="#420991"
-                        textColor="black"
-                        routerLink="/home"
-                    />
+                        <IonText className="text-agendar">
+                            Se ha agendado su examen de manera exitosa. Por favor, 
+                            revise su correo electrónico para más detalles sobre la fecha, 
+                            hora y lugar del examen. Tambien se le enviará un recordatorio 
+                            a través de su correo electrónico registrado sobre la fecha, 
+                            hora y lugar del examen.
+                        </IonText>
+
+                        <Button
+                            texto="Finalizar Agendamiento"
+                            ancho="200px"
+                            background="#420991"
+                            textColor="black"
+                            routerLink="/home"
+                        />
+                    
+                    </div>
 
                 </div>
 

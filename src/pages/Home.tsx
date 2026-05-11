@@ -20,9 +20,9 @@ const Home: React.FC = () => {
 
             <IonContent fullscreen className="fondo">
 
-              <div className="container-home">
+              <div className="wrapper-home">
 
-                <div className="container-text-home">
+                <div className="card-home">
 
                   <IonText className="welcome-text-home">
                     ¡Bienvenido a ConduceFácil!
@@ -42,7 +42,7 @@ const Home: React.FC = () => {
 
                   <IonText className="text-home">
                     Si aún no ha iniciado sus clases de conducción, le recomendamos 
-                    revizar el mapa interactivo en donde podrá visualizar las distintas 
+                    revisar el mapa interactivo en donde podrá visualizar las distintas 
                     escuelas de conducción de las comunas. Puede ver su ubicación e información 
                     de los cursos que ofrecen, horarios y precios, además de su rating, tambien 
                     habrá un link que le permitirá ir a su página oficial donde podrá agendar 
@@ -51,24 +51,11 @@ const Home: React.FC = () => {
 
                   <Button
                     texto="Mapa interactivo"
-                    ancho="200px"
+                    expand='block'
                     background="#420991"
                     textColor="#FFFFFF"
                     fontSize="16px"
                     routerLink="/map"
-                  />
-                  
-                  <IonText className="text-home">
-                    Si desea revisar su trayectoria y horarios de su curso, presione el boton "Mi trayectoria".
-                  </IonText>
-
-                  <Button
-                    texto="Mi trayectoria"
-                    ancho="200px"
-                    background="#420991"
-                    textColor="#FFFFFF"
-                    fontSize="16px"
-                    routerLink="/mi-trayectoria"
                   />
 
                   <IonText className="text-home">
@@ -78,11 +65,24 @@ const Home: React.FC = () => {
 
                   <Button
                     texto="Agendar examen"
-                    ancho="200px"
+                    expand='block'
                     background="#420991"
                     textColor="#FFFFFF"
                     fontSize="16px"
                     routerLink="/agendar-examen"
+                  />
+
+                  <IonText className="text-home">
+                    Si desea revisar su notificación acerca de los horarios o algún cambio en su agenda, presione el boton "Notificaciones".
+                  </IonText>
+
+                  <Button
+                    texto="Notificaciones"
+                    expand='block'
+                    background="#420991"
+                    textColor="#FFFFFF"
+                    fontSize="16px"
+                    routerLink="/notificaciones"
                   />
 
                 </div>

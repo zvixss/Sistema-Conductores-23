@@ -8,7 +8,6 @@ import {IonContent,
 import './AgendarExamenPL.css';
 import MenuLateral from '../components/MenuLateral';
 import ToolbarHome from '../components/ToolbarHome';
-import { useState } from 'react';
 import Button from '../components/Button';
 
 const AgendarExamenAL: React.FC = () => {
@@ -43,32 +42,36 @@ const AgendarExamenAL: React.FC = () => {
 
                 <div className="container-agendar">
 
-                    <IonText className="titulo-agendar">
-                        Agendar Examen
-                    </IonText>
+                    <div className="panel-agendar">
 
-                    <IonText className="text-agendar">
-                        Seleccione la municipalidad donde desea realizar el examen:
-                    </IonText>
+                        <IonText className="titulo-agendar">
+                            Agendar Examen
+                        </IonText>
 
-                    <IonSelect class="select-agendar"
-                        interface="popover"
-                        placeholder="Seleccione una municipalidad"
-                    >
-                        {municipalidades.map((municipalidad) => (
-                            <IonSelectOption key={municipalidad} value={municipalidad}>
-                                {municipalidad}
-                            </IonSelectOption>
-                        ))}
-                    </IonSelect>
+                        <IonText className="text-agendar">
+                            Seleccione la municipalidad donde desea realizar el examen:
+                        </IonText>
 
-                    <Button
-                        texto="Agendar Examen"
-                        ancho="200px"
-                        background="#420991"
-                        textColor="black"
-                        routerLink="/agendar-examen-r"
-                    />
+                        <IonSelect className="select-agendar"
+                            interface="popover"
+                            placeholder="Seleccione una municipalidad"
+                        >
+                            {municipalidades.map((municipalidad) => (
+                                <IonSelectOption key={municipalidad} value={municipalidad}>
+                                    {municipalidad}
+                                </IonSelectOption>
+                            ))}
+                        </IonSelect>
+
+                        <Button
+                            texto="Agendar Examen"
+                            ancho="100%"
+                            background="#420991"
+                            textColor="black"
+                            routerLink="/agendar-examen-r"
+                        />
+
+                    </div>
 
                 </div>
 

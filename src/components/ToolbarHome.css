@@ -2,48 +2,96 @@
 
 .toolbar {
 
-    min-height: 100px;
-
     --background: #D9D9D9;
 
     --color: #0D678E;
+
+    min-height: 85px;
+
+    padding: 0 10px;
 
 }
 
 .button {
 
-    width: 100px;
-
     --background: #0D678E;
 
     --color: #FFFFFF;
 
-    border-radius: 10px;
+    border-radius: 12px;
 
-    font-size: 20px;
+    font-size: 18px;
+
+    min-width: 90px;
+
+    height: 45px;
 
 }
 
 .name {
 
-    font-size: 100px;
+    font-size: 48px;
 
     text-align: center;
 
     font-family: 'K2D', sans-serif;
 
-    --color: #0D678E;
+    color: #0D678E;
+
+    font-weight: bold;
 
 }
 
 .left-buttons {
 
-    margin-left: 40px;
+    margin-top: 20px;
+
+    margin-left: 30px;
 
 }
 
 .right-buttons {
 
-    margin-right: 40px;
+    margin-top: 20px;
+    
+    margin-right: 30px;
+
+}
+
+@media (max-width: 768px) {
+
+    .toolbar {
+
+        min-height: 70px;
+
+    }
+
+    .name {
+
+        font-size: 28px;
+
+    }
+
+    .button {
+
+        min-width: 45px;
+
+        height: 40px;
+
+        font-size: 14px;
+
+    }
+
+    .left-buttons {
+
+        margin-left: 5px;
+
+    }
+
+    .right-buttons {
+
+        margin-right: 5px;
+
+    }
 
 }

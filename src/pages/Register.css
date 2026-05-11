@@ -1,20 +1,54 @@
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@800&display=swap');
 
+.layout-register {
+
+    display: flex;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+}
+
+.left-register {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px;
+
+}
+
+.right-register {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 40px;
+
+}
+
 .nombre-register {
 
-    position: absolute;
-
     background: white;
-
-    left: 70px;
-
-    top: 320px;
 
     font-size: 80px;
 
     font-family: 'K2D', sans-serif;
 
     color: #0D678E;
+
+    text-align: center;
 
 }
 
@@ -34,8 +68,10 @@
 
 .panel-register {
 
-    width: 650px;
-    
+    width: 100%;
+
+    max-width: 650px;
+
     padding:40px;
 
     box-sizing: border-box;
@@ -66,17 +102,15 @@
 
     display: flex;
 
-    width: 70%;
+    width: 100%;
 
     gap: 10px;
-
-    flex: 1;
 
 }
 
 .entrada-register {
 
-    width: 400px;
+    width: 100%;
 
     border-radius: 10px;
     
@@ -93,8 +127,6 @@
     font-size: 25px;
 
     text-align: center;
-
-    flex: 1;
 
 }
 
@@ -136,18 +168,72 @@
 
 }
 
-.login-register::part(native) {
+.checkBox-register ion-label {
 
-    background: transparent;
+    white-space: normal;
 
-    box-shadow: none;
+}
+
+.checkBox-register {
+
+    width: 100%;
+
+    --background: transparent;
+
+    --color: black;
 
     font-size: 13px;
 
-    text-decoration: underline;
+    font-weight: bold;
 
-    color: #006089;
+}
 
-    padding: 0px;
+@media (max-width: 768px) {
+
+    .layout-register {
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        padding: 20px;
+
+    }
+
+    .nombre-register {
+
+        font-size: 45px;
+
+    }
+
+    .panel-register {
+
+        width: 100%;
+
+        padding: 25px;
+
+    }
+
+    .titulo-register {
+
+        font-size: 26px;
+
+        text-align: center;
+
+    }
+
+    .row-register {
+
+        flex-direction: column;
+
+    }
+
+    .checkBox-register {
+
+        width: 100%;
+
+    }
 
 }

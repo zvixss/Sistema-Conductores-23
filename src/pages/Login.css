@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=K2D:wght@800&display=swap');
 
+IonContent {
+    --keyboard-offset: 0px;
+}
+
 .fondo {
 
     --background: transparent;
@@ -15,21 +19,51 @@
     height: 100%;
 }
 
+.layout-login {
+
+    display: flex;
+
+    width: 100%;
+
+    height: 100vh;
+
+}
+
+.left-login {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 20px;
+
+}
+
+.right-login {
+
+    flex: 1;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
 .nombre-login {
-
-    position: absolute;
-
-    background: white;
-
-    right: 70px;
-
-    top: 320px;
 
     font-size: 80px;
 
     font-family: 'K2D', sans-serif;
 
     color: #0D678E;
+
+    background: white;
 
 }
 
@@ -49,20 +83,22 @@
 
 .panel-login {
 
-    width: 650px;
+    width: 90%;
 
-    height: 580px;
+    max-width: 650px;
 
-    padding:100px;
+    min-height: 580px;
+
+    padding: 40px;
 
     box-sizing: border-box;
 
-    border-radius: 10px;
+    border-radius: 20px;
 
     background: #D9D9D9;
 
     display: flex;
-    
+
     flex-direction: column;
 
     align-items: center;
@@ -83,10 +119,12 @@
 
 .entrada-login {
 
-    width: 70%;
+    width: 100%;
+
+    max-width: 400px;
 
     background: white;
-    
+
     border: 2px solid black;
 
     border-radius: 10px;
@@ -94,6 +132,8 @@
     color: black;
 
     font-size: 20px;
+
+    padding: 5px;
 
 }
 
@@ -124,5 +164,55 @@
     text-decoration: underline;
 
     --color: #006089;
+
+}
+
+@media (max-width: 768px) {
+
+    .layout-login {
+
+        flex-direction: column;
+
+        justify-content: center;
+
+        align-items: center;
+
+        gap: 30px;
+
+        padding: 20px;
+
+    }
+
+    .nombre-login {
+
+        font-size: 45px;
+
+        text-align: center;
+
+    }
+
+    .panel-login {
+
+        width: 100%;
+
+        max-width: 400px;
+
+        min-height: auto;
+
+        padding: 30px 20px;
+
+    }
+
+    .titulo-login {
+
+        font-size: 28px;
+
+    }
+
+    .entrada-login {
+
+        width: 100%;
+
+    }
 
 }

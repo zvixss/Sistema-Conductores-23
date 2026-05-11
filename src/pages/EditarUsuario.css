@@ -8,37 +8,49 @@
 
     align-items: center;
 
-    height: 100vh;
+    min-height: 100vh;
+
+    padding: 30px;
+
+    box-sizing: border-box;
 
 }
 
 .panel-editar {
 
-    width: 600px;
-    
-    padding:40px;
+    width: 100%;
 
-    box-sizing: border-box;
+    max-width: 700px;
 
-    border-radius: 10px;
+    padding: 40px;
 
-    background: #D9D9D9;
+    border-radius: 25px;
+
+    background: white;
 
     display: flex;
-    
+
     flex-direction: column;
 
     align-items: center;
 
-    gap: 20px;
+    gap: 22px;
+
+    box-shadow: 0 6px 25px rgba(0,0,0,0.12);
+
+    box-sizing: border-box;
 
 }
 
 .titulo-editar {
 
-    font-size: 30px;
+    font-size: 36px;
 
-    color: black;
+    font-family: 'K2D', sans-serif;
+
+    color: #0D678E;
+
+    text-align: center;
 
 }
 
@@ -46,86 +58,94 @@
 
     display: flex;
 
-    width: 80%;
+    width: 100%;
 
-    gap: 10px;
-
-    flex: 1;
+    gap: 15px;
 
 }
 
 .entrada-editar {
 
-    width: 420px;
+    flex: 1;
 
-    border-radius: 10px;
-    
-    border: 2px solid black;
+    width: 100%;
 
-    padding: 5px 10px;
+    min-width: 0;
 
-    box-sizing: border-box;
+    border-radius: 15px;
 
-    background: white;
+    border: 2px solid #d0d7de;
+
+    padding: 10px 14px;
+
+    background: #fdfdfd;
 
     color: black;
 
-    font-size: 25px;
+    font-size: 18px;
 
     text-align: center;
 
-    flex: 1;
+    transition: 0.2s ease;
 
 }
 
 .selector-editar {
     
-    border-radius: 10px;
+    flex: 1;
 
-    border: 2px solid black;
+    min-width: 0;
 
-    padding: 5px 10px;
+    border-radius: 15px;
 
-    box-sizing: border-box;
-    
-    background: white;
+    border: 2px solid #d0d7de;
+
+    padding: 10px 14px;
+
+    background: #fdfdfd;
 
     color: black;
 
-    font-size: 25px;
-
-    text-align: center;
-
-    flex: 1;
-
-}
-
-.boton-editar {
-
-    width: 250px;
-
-    border-radius: 10px;
-
-    border: 2px solid black;
-
-    --background: #0D678E;
-
-    --color: black;
-
     font-size: 18px;
 
+    transition: 0.2s ease;
+
 }
 
-.login-editar {
+.checkBox-editar {
+
+    width: 100%;
 
     --background: transparent;
 
-    --box-shadow: none;
+    --color: #333;
 
-    font-size: 13px;
+    font-size: 15px;
 
-    text-decoration: underline;
+    font-weight: 500;
 
-    --color: #006089;
+}
+
+.row-editar-usuario {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    width: 100%;
+
+    margin-top: 10px;
+
+}
+
+.texto_editar-usuario {
+
+    text-align: center;
+
+    color: #666;
+
+    font-size: 14px;
 
 }

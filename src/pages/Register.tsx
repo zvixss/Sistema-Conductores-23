@@ -4,13 +4,17 @@ import {IonContent,
   IonInput,
   IonText,
   IonSelect,
-  IonSelectOption
+  IonSelectOption,
+  IonItem,
+  IonCheckbox,
+  IonLabel
 } from '@ionic/react';
 
 import { useState } from 'react';
 
 import './Register.css';
 import Button from '../components/Button';
+import ButtonLink from '../components/ButtonLink';
 
 const Register: React.FC = () => {
 
@@ -55,8 +59,10 @@ const Register: React.FC = () => {
   const [userName, setUserName] = useState('');
   const [rut, setRut] = useState('');
   const [correo, setCorreo] = useState('');
+  const [telefono, setTelefono] = useState('');
   const [region, setRegion] = useState('');
   const [comuna, setComuna] = useState('');
+  const [aceptado, setAceptado] = useState(false);
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
 
@@ -64,9 +70,17 @@ const Register: React.FC = () => {
     <IonPage>
       <IonContent fullscreen className="fondo">
 
+      <div className="layout-register">
+
+      <div className="left-register">
+
       <IonText className="nombre-register">
         ConduceFácil
       </IonText>
+
+      </div>
+
+      <div className="right-register">
 
         <div className="container-register">
 
@@ -110,6 +124,17 @@ const Register: React.FC = () => {
                 value = {correo}
                 placeholder="Correo"
                 onIonChange={(e) => setCorreo(e.detail.value!)}
+              />
+
+            </div>
+
+            <div className="entrada-register">
+
+              <IonInput 
+                type = "text"
+                value = {telefono}
+                placeholder="telefono"
+                onIonChange={(e) => setTelefono(e.detail.value!)}
               />
 
             </div>
@@ -185,6 +210,24 @@ const Register: React.FC = () => {
 
             </div>
 
+            <IonItem className="checkBox-register">
+
+              <IonCheckbox 
+            
+                checked={aceptado}
+
+                onIonChange={(e) => setAceptado(e.detail.checked)}
+            
+              />
+
+              <IonLabel>
+
+                He leido los TERMINOS Y CONDICIONES y acepto.
+
+              </IonLabel>
+
+            </IonItem>
+
             <Button
               texto="PARA REGISTRARSE HAGA CLICK AQUÍ"
               talla="large"
@@ -192,11 +235,17 @@ const Register: React.FC = () => {
               fontSize="15px"
               textColor="black"
               routerLink="/login"
+              disabled={!aceptado}
             />
 
-            <IonButton className="login-register" routerLink="/login">
-              ¿Ya estás registrado? Ingresa acá
-            </IonButton>
+            <ButtonLink 
+              texto="¿Ya estás registrado? Ingresa acá"
+              routerLink="/login"
+            />
+
+          </div>
+
+          </div>
 
           </div>
 

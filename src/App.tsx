@@ -11,6 +11,7 @@ import AgendarExamenPL from './pages/AgendarExamenPL';
 import AgendarExamenAL from './pages/AgendarExamenAL';
 import AgendarExamenR from './pages/AgendarExamenR';
 import EditarUsuario from './pages/EditarUsuario';
+import Notificaciones from './pages/Notificaciones';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -80,6 +81,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/editar-usuario">
           <EditarUsuario />
+        </Route>
+        <Route exact path="/notificaciones">
+          <Notificaciones />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

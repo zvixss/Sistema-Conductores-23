@@ -33,7 +33,7 @@ type ButtonProps = {
 const Button: React.FC<ButtonProps> = ({
     texto,
     talla = 'default',
-    ancho = '150px',
+    ancho = '100%',
     expand,
     routerLink,
     disabled = false,
