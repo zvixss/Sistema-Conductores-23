@@ -1,7 +1,7 @@
 # ConduceFácil 🚗💨
 **Optimización y Descentralización del Agendamiento de Licencias de Conducir**
 
-Este proyecto surge como una solución tecnológica a la crisis de disponibilidad en las Direcciones de Tránsito en Chile. Actualmente, **solo el 19% de las comunas permite agendar exámenes en línea**, lo que genera cuellos de botella y esperas de meses para los ciudadanos.
+Este proyecto surge como una solución tecnológica a la crisis de disponibilidad en las Direcciones de Tránsito en Chile. Actualmente, **solo el 19% de las comunas permite agendar exámenes en línea**, lo que genera esperas de meses para los ciudadanos.
 
 ## Integrantes:
 * Alexander Parada Silva
@@ -15,7 +15,7 @@ El objetivo principal es **descentralizar la demanda de licencias**. ConduceFác
 ### Solución Propuesta:
 * **Visualización Inteligente:** Mapa interactivo que muestra la disponibilidad de horas en diversas comunas.
 * **Conexión con Escuelas:** Integración con escuelas de conductores para validar la trayectoria del alumno.
-* **Agendamiento Optimizado:** Sistema que sugiere municipalidades "bajo la lupa" con menor tiempo de espera.
+* **Agendamiento Optimizado:** Sistema que sugiere municipalidades con menor tiempo de espera.
 * **Gestión de Perfil:** Espacio para que el ciudadano controle su documentación y estado del trámite.
 
 ---
@@ -25,15 +25,15 @@ El diseño de la interfaz se realizó en **Figma**, enfocándose en la usabilida
 
 ### Cómo probar el prototipo:
 1.  **Acceder al enlace:** [Sistema ConduceFácil - Figma](https://www.figma.com/site/2NcgVbsyereHBcFL6wao3l/SIstema-Conductores?node-id=0-1&t=eHXlu6ZrZac98wCv-1)
-2.  **Modo Presentación:** Una vez que cargue el archivo, presiona el icono de **"Play" (▶️)** ubicado en la esquina superior derecha.
-3.  **Navegación:** * En la **versión móvil**, utiliza los `IonTabs` (barra inferior) para navegar entre las secciones.
+2.  **Modo Presentación:** Una vez cargue el archivo, presiona el icono de **"Play" (▶️)** ubicado en la esquina superior derecha.
+3.  **Navegación:** * En la **versión móvil**, utiliza los `IonTabs` (barra inferior) para navegar.
     * En la **versión desktop**, utiliza el menú lateral desplegable.
 
 ---
 
 ## 💻 Guía de Ejecución Local
 
-Para levantar el proyecto y revisar el código fuente, sigue estas instrucciones utilizando el terminal (CMD o PowerShell).
+Para levantar el proyecto y revisar el código fuente, sigue estas instrucciones. **Nota:** El código fuente se encuentra en la rama `master`.
 
 ### Requisitos Previos:
 * **Visual Studio Code** instalado.
@@ -41,16 +41,27 @@ Para levantar el proyecto y revisar el código fuente, sigue estas instrucciones
 * CLI de **Ionic** instalado (`npm install -g @ionic/cli`).
 
 ### Pasos para ejecutar:
-1.  **Abrir el proyecto:** Inicia VS Code y abre la carpeta llamada `appWeb`.
-2.  **Instalar Dependencias:** Abre la terminal integrada y ejecuta el siguiente comando para descargar las librerías necesarias:
-    ```cmd
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone https://github.com/zvixss/Sistema-Conductores-23.git
+    ```
+2.  **Acceder a la rama correcta:** Asegúrate de estar en la rama `master`:
+    ```bash
+    git checkout master
+    ```
+3.  **Entrar a la carpeta del proyecto:**
+    ```bash
+    cd appWeb
+    ```
+4.  **Instalar Dependencias:** Abre la terminal y ejecuta:
+    ```bash
     npm install
     ```
-3.  **Ejecutar la Aplicación:** Una vez finalizada la instalación, levanta el servidor local con el comando:
-    ```cmd
+5.  **Ejecutar la Aplicación:** Levanta el servidor local con el comando:
+    ```bash
     ionic serve
     ```
-4.  **Visualización:** El sistema se abrirá automáticamente en tu navegador en la dirección `http://localhost:8100`.
+6.  **Visualización:** El sistema se abrirá automáticamente en tu navegador en `http://localhost:8100`.
 
 ---
 
@@ -58,4 +69,4 @@ Para levantar el proyecto y revisar el código fuente, sigue estas instrucciones
 - **Frontend:** Ionic Framework con React y TypeScript.
 - **Diseño:** Figma.
 - **Editor de Código:** Visual Studio Code.
-- **Control de Versiones:** Git & GitHub.
+- **Control de Versiones:** Git & GitHub (Rama `master`).
