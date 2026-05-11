@@ -1,0 +1,33 @@
+.panel-info-map-muni {
+
+    position: absolute;
+
+    top: 120px;
+
+    right: 20px;
+
+    width: 380px;
+
+    max-width: 90vw;
+
+    max-height: 75vh;
+
+    overflow-y: auto;
+
+    background: #0D678E;
+
+    border-radius: 24px;
+
+    padding: 20px;
+
+    z-index: 999;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 18px;
+
+    color: white;
+
+}

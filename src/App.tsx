@@ -12,6 +12,7 @@ import AgendarExamenAL from './pages/AgendarExamenAL';
 import AgendarExamenR from './pages/AgendarExamenR';
 import EditarUsuario from './pages/EditarUsuario';
 import Notificaciones from './pages/Notificaciones';
+import MapMunicipal from './pages/MapMunicpal';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -84,6 +85,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/notificaciones">
           <Notificaciones />
+        </Route>
+        <Route exact path="/map-municipal">
+          <MapMunicipal />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

@@ -64,11 +64,11 @@ const AgendarExamenAL: React.FC = () => {
                         </IonSelect>
 
                         <Button
-                            texto="Agendar Examen"
+                            texto="Ir al mapa"
                             ancho="100%"
                             background="#420991"
                             textColor="black"
-                            routerLink="/agendar-examen-r"
+                            routerLink="/map-municipal"
                         />
 
                     </div>
