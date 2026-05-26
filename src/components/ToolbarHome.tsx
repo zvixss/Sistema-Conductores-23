@@ -2,12 +2,14 @@ import {
   IonHeader,
   IonToolbar,
   IonButtons,
-  IonButton,
   IonTitle,
   IonMenuButton
 } from '@ionic/react';
 
 import './ToolbarHome.css';
+import Button from './Button';
+import menuIcon from '../assets/images/menu_icon.png';
+import perfilIcon from '../assets/images/perfil.png';
 
 const ToolbarHome: React.FC = () => {
 
@@ -22,8 +24,12 @@ const ToolbarHome: React.FC = () => {
           className="left-buttons"
         >
 
-          <IonMenuButton className="button">
-            MENU
+          <IonMenuButton className="button-menu">
+            <img
+              src={menuIcon}
+              alt="MenuIcono"
+              className="button-icon"
+            />
           </IonMenuButton>
 
         </IonButtons>
@@ -37,9 +43,16 @@ const ToolbarHome: React.FC = () => {
           className="right-buttons"
         >
 
-          <IonButton className="button" routerLink="/perfil">
-            PERFIL
-          </IonButton>
+          <Button
+            texto="MI PERFIL"
+            expand='block'
+            background="transparent"
+            textColor="#006089"
+            fontSize="16px"
+            ancho="100%"
+            icono={perfilIcon}
+            routerLink="/perfil"
+          />
 
         </IonButtons>
 

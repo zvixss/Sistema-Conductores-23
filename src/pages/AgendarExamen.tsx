@@ -36,33 +36,33 @@ const AgendarExamen: React.FC = () => {
 
                             <Button
                                 texto="Primera Licencia Clase B"
-                                ancho="100%"
-                                background="#420991"
-                                textColor='black'
+                                background="#D9D9D9"
+                                textColor="black"
+                                ancho="45%"
                                 routerLink="/agendar-examen-pl"
                             />
 
                             <Button
                                 texto="Primera Licencia Clase C"
-                                ancho="100%"
-                                background="#420991"
-                                textColor='black'
+                                background="#D9D9D9"
+                                textColor="black"
+                                ancho="45%"
                                 routerLink="/agendar-examen-pl"
                             />
 
                             <Button
                                 texto="Renovación de Licencia"
-                                ancho="100%"
-                                background="#420991"
-                                textColor='black'
+                                background="#D9D9D9"
+                                textColor="black"
+                                ancho="45%"
                                 routerLink="/agendar-examen-al"
                             />
 
                             <Button
                                 texto="Extensión de Licencia"
-                                ancho="100%"
-                                background="#420991"
-                                textColor='black'
+                                background="#D9D9D9"
+                                textColor="black"
+                                ancho="45%"
                                 routerLink="/agendar-examen-al"
                             />
 

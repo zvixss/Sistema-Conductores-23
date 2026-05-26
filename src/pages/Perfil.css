@@ -12,17 +12,17 @@
 
     align-items: center;
 
-    gap: 50px;
-
-    width: 100%;
-
-    min-height: calc(100vh - 120px);
-
-    padding: 40px;
-
     box-sizing: border-box;
 
     flex-wrap: wrap;
+
+    width: 100%;
+
+    height: 80%;
+
+    padding: 40px;
+
+    gap: 50px;
 
 }
 
@@ -42,27 +42,24 @@
 
 .column-perfil {
 
-    width: 100%;
-
-    background: white;
-
-    border-radius: 20px;
-
-    padding: 25px;
-
-    box-sizing: border-box;
-
     display: flex;
 
     flex-direction: column;
 
     align-items: center;
 
+    box-sizing: border-box;
+
+    background: white;
+
+    border-radius: 20px;
+
+    width: 100%;
+
+    padding: 15px;
+
     gap: 12px;
 
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-
-    transition: transform 0.2s ease;
 }
 
 .column-perfil ion-label {
@@ -107,7 +104,7 @@
 
     width: 100%;
 
-    padding: 20px 40px 40px 40px;
+    padding: 50px 40px 0px;
 
     box-sizing: border-box;
 

@@ -3,10 +3,9 @@ import {IonContent,
   IonText
 } from '@ionic/react';
 
-import './AgendarExamenPL.css';
+import './AgendarExamenR.css';
 import MenuLateral from '../components/MenuLateral';
 import ToolbarHome from '../components/ToolbarHome';
-import { useState } from 'react';
 import Button from '../components/Button';
 
 const AgendarExamenR: React.FC = () => {
@@ -21,9 +20,9 @@ const AgendarExamenR: React.FC = () => {
 
             <IonContent fullscreen className="fondo">
 
-                <div className="container-agendar">
+                <div className="container-agendar-r">
 
-                    <div className="panel-agendar">
+                    <div className="panel-agendar-r">
 
                         <IonText className="titulo-agendar">
                             Agendar Examen Realizado
@@ -40,7 +39,7 @@ const AgendarExamenR: React.FC = () => {
                         <Button
                             texto="Finalizar Agendamiento"
                             ancho="200px"
-                            background="#420991"
+                            background="#D9D9D9"
                             textColor="black"
                             routerLink="/home"
                         />

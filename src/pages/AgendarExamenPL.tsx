@@ -68,7 +68,7 @@ const AgendarExamenPL: React.FC = () => {
                         <Button
                             texto="Subir Documento"
                             ancho="200px"
-                            background="#420991"
+                            background="#D9D9D9"
                             textColor="black"
                             routerLink="/agendar-examen-r"
                         />

@@ -69,6 +69,17 @@ const EditarUsuario: React.FC = () => {
 
         <IonContent fullscreen className="fondo">
 
+            <Button
+                texto="Atrás"
+                talla="small"
+                ancho="200px"
+                fontSize="20px"
+                textColor="black"
+                background="#8E0D23"
+                className="boton-salida-editar-usuario"
+                routerLink="/perfil"
+            />
+
             <div className="container-editar">
 
                 <div className="panel-editar">
@@ -109,7 +120,7 @@ const EditarUsuario: React.FC = () => {
                         <IonInput 
                             type = "text"
                             value = {correo}
-                            placeholder="Correo"
+                            placeholder="Correo Electrónico"
                             onIonChange={(e) => setCorreo(e.detail.value!)}
                         />
 
@@ -200,9 +211,7 @@ const EditarUsuario: React.FC = () => {
                         />
                     
                         <IonLabel>
-                    
                             Acepto que no  puedo realizar cambios en 30 días
-                    
                         </IonLabel>
                     
                     </IonItem>
@@ -210,19 +219,9 @@ const EditarUsuario: React.FC = () => {
                     <div className="row-editar-usuario">
 
                         <Button
-                            texto="Atras"
-                            talla="large"
-                            ancho="200px"
-                            fontSize="20px"
-                            textColor="black"
-                            background="red"
-                            routerLink="/perfil"
-                        />
-
-                        <Button
                             texto="GUARDAR CAMBIOS"
-                            talla="large"
-                            ancho="200px"
+                            talla="small"
+                            ancho="300px"
                             fontSize="20px"
                             textColor="black"
                             disabled={!aceptado}
@@ -231,7 +230,7 @@ const EditarUsuario: React.FC = () => {
 
                     </div>
 
-                    <IonText className="texto_editar-usuario">
+                    <IonText className="textoÑ-editar-usuario">
                         *Usted tendrá que entrar a su cuenta nuevamente
                     </IonText>
 

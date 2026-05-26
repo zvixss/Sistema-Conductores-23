@@ -27,6 +27,8 @@ type ButtonProps = {
 
     textColor?: string;
 
+    className?: string;
+
     onClick?: () => void;
 };
 
@@ -42,13 +44,14 @@ const Button: React.FC<ButtonProps> = ({
     fontSize,
     fontFamily,
     textColor = '#0D678E',
+    className,
     onClick,
 }) => {
     return (
 
         <IonButton
 
-            className="boton-principal"
+            className={`boton-principal ${className || ''}`}
 
             size={talla}
 

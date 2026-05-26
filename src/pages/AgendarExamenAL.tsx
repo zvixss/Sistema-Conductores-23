@@ -5,7 +5,7 @@ import {IonContent,
   IonSelectOption
 } from '@ionic/react';
 
-import './AgendarExamenPL.css';
+import './AgendarExamenAL.css';
 import MenuLateral from '../components/MenuLateral';
 import ToolbarHome from '../components/ToolbarHome';
 import Button from '../components/Button';
@@ -66,7 +66,7 @@ const AgendarExamenAL: React.FC = () => {
                         <Button
                             texto="Ir al mapa"
                             ancho="100%"
-                            background="#420991"
+                            background="#D9D9D9"
                             textColor="black"
                             routerLink="/map-municipal"
                         />
