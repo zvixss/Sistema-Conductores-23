@@ -1,6 +1,5 @@
 import {IonContent,
   IonPage,
-  IonButton,
   IonInput,
   IonText,
   IonSelect,
@@ -15,6 +14,7 @@ import { useState } from 'react';
 import './Register.css';
 import Button from '../components/Button';
 import ButtonLink from '../components/ButtonLink';
+import Message from '../components/Message';
 
 const Register: React.FC = () => {
 
@@ -65,6 +65,63 @@ const Register: React.FC = () => {
   const [aceptado, setAceptado] = useState(false);
   const [password1, setPassword1] = useState('');
   const [password2, setPassword2] = useState('');
+  const [mensajeError, setMensajeError] = useState('');
+
+  const registrar = async () => {
+
+    try {
+
+      const respuesta = await fetch(
+          "http://localhost:3000/api/auth/register",
+          {
+              method: "POST",
+
+              headers: {
+                  "Content-Type": "application/json"
+              },
+
+              body: JSON.stringify({
+
+                  nombreUsuario: userName,
+
+                  rut,
+
+                  correo,
+
+                  telefono,
+
+                  password: password1,
+
+                  confirmPassword: password2,
+
+                  region,
+
+                  comuna
+
+              })
+          }
+    );
+
+      const data = await respuesta.json();
+
+      console.log(data);
+
+      if (!respuesta.ok) {
+
+        setMensajeError(data.mensaje);
+
+        return;
+
+      }
+
+      window.location.href = "/login";
+
+    }  catch (error) {
+
+        console.log(error);
+
+    }
+  };
 
   return (
     <IonPage>
@@ -234,14 +291,23 @@ const Register: React.FC = () => {
               ancho="250px"
               fontSize="15px"
               textColor="black"
-              routerLink="/login"
               disabled={!aceptado}
+              onClick={registrar}
             />
 
             <ButtonLink 
               texto="¿Ya estás registrado? Ingresa acá"
               routerLink="/login"
             />
+
+            {mensajeError && (
+
+              <Message
+                texto={mensajeError}
+                tipo="error"
+              />
+
+            )}
 
           </div>
 
