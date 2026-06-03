@@ -29,3 +29,13 @@ app.use(
     "/api/examenes",
     examenRoutes
 );
+
+const notificacionRoutes =
+require(
+"./routes/notificacionRoutes"
+);
+
+app.use(
+    "/api/notificaciones",
+    notificacionRoutes
+);

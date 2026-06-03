@@ -3,7 +3,8 @@ const express = require("express");
 const router = express.Router();
 
 const {
-    agendarExamen
+    agendarExamen,
+    obtenerMunicipalidadUsuario
 } = require("../controllers/examenController");
 
 const verificarToken =
@@ -13,6 +14,12 @@ router.post(
     "/agendar",
     verificarToken,
     agendarExamen
+);
+
+router.get(
+    "/municipalidad-usuario",
+    verificarToken,
+    obtenerMunicipalidadUsuario
 );
 
 module.exports = router;

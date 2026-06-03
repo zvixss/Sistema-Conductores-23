@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2026 a las 04:40:29
+-- Tiempo de generación: 03-06-2026 a las 23:23:20
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -33,9 +33,63 @@ CREATE TABLE `examenes` (
   `tipo_examen` varchar(50) NOT NULL,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
-  `ubicacion` varchar(255) NOT NULL,
   `estado` enum('pendiente','confirmado','cancelado','realizado') DEFAULT 'pendiente',
-  `fechaCreacion` timestamp NOT NULL DEFAULT current_timestamp()
+  `fechaCreacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `id_municipalidad` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `municipalidades`
+--
+
+CREATE TABLE `municipalidades` (
+  `id_municipalidad` int(11) NOT NULL,
+  `nombre_municipalidad` varchar(150) NOT NULL,
+  `comuna` varchar(100) NOT NULL,
+  `direccion` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `municipalidades`
+--
+
+INSERT INTO `municipalidades` (`id_municipalidad`, `nombre_municipalidad`, `comuna`, `direccion`) VALUES
+(1, 'Municipalidad de Santiago', 'Santiago', 'Plaza de Armas S/N'),
+(2, 'Municipalidad de Maipu', 'Maipu', 'Av. Pajaritos 2077'),
+(3, 'Municipalidad de Puente Alto', 'Puente Alto', 'Concha y Toro 1820'),
+(4, 'Municipalidad de Arica', 'Arica', 'Rafael Sotomayor 415'),
+(5, 'Municipalidad de Iquique', 'Iquique', 'Aníbal Pinto 50'),
+(6, 'Municipalidad de Antofagasta', 'Antofagasta', 'Av. Séptimo de Línea 3505'),
+(7, 'Municipalidad de Copiapó', 'Copiapó', 'Chacabuco 857'),
+(8, 'Municipalidad de La Serena', 'La Serena', 'Arturo Prat 451'),
+(9, 'Municipalidad de Calama', 'Calama', 'Granaderos 3636'),
+(10, 'Municipalidad de Valparaíso', 'Valparaíso', 'Condell 1490'),
+(11, 'Municipalidad de Viña del Mar', 'Viña del Mar', 'Arlegui 615'),
+(12, 'Municipalidad de Rancagua', 'Rancagua', 'Plaza de los Héroes 445'),
+(13, 'Municipalidad de Talca', 'Talca', '1 Sur 790'),
+(14, 'Municipalidad de Chillán', 'Chillán', '18 de Septiembre 510'),
+(15, 'Municipalidad de Concepción', 'Concepción', 'O\'Higgins 525'),
+(16, 'Municipalidad de Temuco', 'Temuco', 'Arturo Prat 650'),
+(17, 'Municipalidad de Valdivia', 'Valdivia', 'Independencia 455'),
+(18, 'Municipalidad de Puerto Montt', 'Puerto Montt', 'San Felipe 80'),
+(19, 'Municipalidad de Coyhaique', 'Coyhaique', 'Condell 434'),
+(20, 'Municipalidad de Punta Arenas', 'Punta Arenas', 'Plaza Muñoz Gamero 745');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `notificaciones`
+--
+
+CREATE TABLE `notificaciones` (
+  `id` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `titulo` varchar(100) DEFAULT NULL,
+  `mensaje` text DEFAULT NULL,
+  `leido` tinyint(1) DEFAULT 0,
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -74,6 +128,20 @@ INSERT INTO `usuarios` (`id`, `nombreUsuario`, `rut`, `correo`, `telefono`, `reg
 --
 ALTER TABLE `examenes`
   ADD PRIMARY KEY (`id`),
+  ADD KEY `usuario_id` (`usuario_id`),
+  ADD KEY `fk_examen_municipalidad` (`id_municipalidad`);
+
+--
+-- Indices de la tabla `municipalidades`
+--
+ALTER TABLE `municipalidades`
+  ADD PRIMARY KEY (`id_municipalidad`);
+
+--
+-- Indices de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD PRIMARY KEY (`id`),
   ADD KEY `usuario_id` (`usuario_id`);
 
 --
@@ -96,6 +164,18 @@ ALTER TABLE `examenes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de la tabla `municipalidades`
+--
+ALTER TABLE `municipalidades`
+  MODIFY `id_municipalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT de la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
@@ -109,7 +189,14 @@ ALTER TABLE `usuarios`
 -- Filtros para la tabla `examenes`
 --
 ALTER TABLE `examenes`
-  ADD CONSTRAINT `examenes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `examenes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `fk_examen_municipalidad` FOREIGN KEY (`id_municipalidad`) REFERENCES `municipalidades` (`id_municipalidad`);
+
+--
+-- Filtros para la tabla `notificaciones`
+--
+ALTER TABLE `notificaciones`
+  ADD CONSTRAINT `notificaciones_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
