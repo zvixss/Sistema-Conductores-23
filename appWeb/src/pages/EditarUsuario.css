@@ -1,0 +1,141 @@
+@import url('https://fonts.googleapis.com/css2?family=K2D:wght@800&display=swap');
+
+.container-editar {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    margin: 20px;
+
+}
+
+.panel-editar {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    background: #D9D9D9;
+
+    border-radius: 25px;
+
+    padding: 40px 60px;
+
+    gap: 22px;
+
+}
+
+.titulo-editar {
+
+    font-size: 36px;
+
+    color: black;
+
+    text-align: center;
+
+}
+
+.row-editar {
+
+    display: flex;
+
+    width: 100%;
+
+    gap: 15px;
+
+}
+
+.entrada-editar {
+
+    width: 100%;
+
+    border-radius: 15px;
+
+    border: 2px solid black;
+
+    box-sizing: border-box;
+
+    background: #fdfdfd;
+
+    color: black;
+
+    font-size: 18px;
+
+    text-align: center;
+
+    padding: 3px 0px;
+
+}
+
+.selector-editar {
+
+    width: 100%;
+
+    border-radius: 15px;
+
+    border: 2px solid black;
+
+    padding: 5px 10px;
+
+    background: #fdfdfd;
+
+    color: black;
+
+    font-size: 18px;
+
+}
+
+.checkBox-editar {
+
+    width: 100%;
+
+    --background: transparent;
+
+    --color: #333;
+
+    font-size: 15px;
+
+    font-weight: 500;
+
+}
+
+.row-editar-usuario {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    width: 100%;
+
+}
+
+.texto-editar-usuario {
+
+    text-align: center;
+
+    color: #666;
+
+    font-size: 14px;
+
+}
+
+.boton-salida-editar-usuario {
+
+    position: absolute;
+
+    bottom: 20px;
+
+    left: 20px;
+
+}

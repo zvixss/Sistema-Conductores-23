@@ -1,0 +1,31 @@
+.select-agendar-al {
+
+    width: 100%;
+
+    max-width: 450px;
+
+    --placeholder-color: #666;
+
+    --color: black;
+
+    --padding-start: 15px;
+
+    background: white;
+
+    border-radius: 12px;
+
+    border: 2px solid black;
+
+    font-size: 16px;
+
+    box-sizing: border-box;
+
+}
+
+@media (max-width: 768px) {
+
+    .select-agendar-al {
+
+        font-size: 14px;
+    }
+}

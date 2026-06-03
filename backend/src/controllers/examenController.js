@@ -8,12 +8,14 @@ const agendarExamen = (req, res) => {
         tipo_examen,
         fecha,
         hora,
+        id_municipalidad
     } = req.body;
 
     if (
         !tipo_examen ||
         !fecha ||
-        !hora
+        !hora ||
+        !id_municipalidad
     ) {
 
         return res.status(400).json({
@@ -61,9 +63,10 @@ const agendarExamen = (req, res) => {
             usuario_id,
             tipo_examen,
             fecha,
-            hora
+            hora,
+            id_municipalidad
         )
-        VALUES (?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?)
     `;
 
     db.query(
@@ -72,7 +75,8 @@ const agendarExamen = (req, res) => {
             usuarioId,
             tipo_examen,
             fecha,
-            hora
+            hora,
+            id_municipalidad
         ],
         (error) => {
 

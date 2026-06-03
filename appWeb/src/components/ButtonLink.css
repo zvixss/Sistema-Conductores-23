@@ -1,0 +1,7 @@
+.boton-link-principal::part(native) {
+
+    text-decoration: underline !important;
+
+    cursor: pointer;
+
+}

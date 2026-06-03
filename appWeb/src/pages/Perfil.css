@@ -1,0 +1,169 @@
+.fondo-perfil {
+
+    --background: white;
+
+}
+
+.container-perfil {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    flex-wrap: wrap;
+
+    width: 100%;
+
+    height: 80%;
+
+    padding: 40px;
+
+    gap: 50px;
+
+}
+
+.columns-perfil {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    gap: 40px;
+
+    width: 300px;
+
+}
+
+.column-perfil {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    box-sizing: border-box;
+
+    background: white;
+
+    border-radius: 20px;
+
+    width: 100%;
+
+    padding: 15px;
+
+    gap: 12px;
+
+}
+
+.column-perfil ion-label {
+
+    font-size: 22px;
+
+    font-weight: bold;
+
+    color: #0D678E;
+
+    text-align: center;
+}
+
+.column-perfil ion-text {
+
+    font-size: 18px;
+
+    color: #333;
+
+    text-align: center;
+}
+
+.titulo-perfil {
+
+    font-size: 36px;
+
+    font-family: 'K2D', sans-serif;
+
+    color: #0D678E;
+
+    text-align: center;
+
+}
+
+.buttons-perfil {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    width: 100%;
+
+    padding: 50px 40px 0px;
+
+    box-sizing: border-box;
+
+}
+
+@media (max-width: 900px) {
+
+    .container-perfil {
+
+        flex-direction: column;
+
+        gap: 30px;
+
+        padding: 20px;
+
+    }
+
+    .columns-perfil {
+
+        width: 100%;
+
+        max-width: 400px;
+
+    }
+
+    .titulo-perfil {
+
+        font-size: 28px;
+
+    }
+
+    .foto-perfil {
+
+        width: 170px;
+
+        height: 170px;
+
+    }
+
+    .column-perfil ion-label {
+
+        font-size: 18px;
+
+    }
+
+    .column-perfil ion-text {
+
+        font-size: 16px;
+
+    }
+
+    .buttons-perfil {
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding-bottom: 30px;
+
+    }
+
+}
