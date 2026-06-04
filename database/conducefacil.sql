@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-06-2026 a las 02:54:24
+-- Tiempo de generación: 04-06-2026 a las 05:43:40
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -47,7 +47,8 @@ INSERT INTO `examenes` (`id`, `usuario_id`, `tipo_examen`, `fecha`, `hora`, `est
 (2, 2, 'Primera Licencia Clase B', '2026-06-10', '08:30:00', 'pendiente', '2026-06-03 22:03:01', 10, 'pendiente'),
 (3, 2, 'Primera Licencia Clase B', '2026-06-04', '09:15:00', 'pendiente', '2026-06-04 00:25:04', 10, 'pendiente'),
 (4, 2, 'Primera Licencia Clase B', '2026-06-08', '10:00:00', 'pendiente', '2026-06-04 00:51:43', 10, 'pendiente'),
-(5, 2, 'Primera Licencia Clase B', '2026-09-16', '13:15:00', 'pendiente', '2026-06-04 00:53:11', 10, 'pendiente');
+(5, 2, 'Primera Licencia Clase B', '2026-09-16', '13:15:00', 'pendiente', '2026-06-04 00:53:11', 10, 'pendiente'),
+(6, 2, 'Ampliación de Licencia', '2026-06-30', '11:45:00', 'pendiente', '2026-06-04 02:06:04', 10, 'pendiente');
 
 -- --------------------------------------------------------
 
@@ -122,8 +123,17 @@ CREATE TABLE `notificaciones` (
   `titulo` varchar(100) DEFAULT NULL,
   `mensaje` text DEFAULT NULL,
   `leido` tinyint(1) DEFAULT 0,
-  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp()
+  `fecha_creacion` timestamp NOT NULL DEFAULT current_timestamp(),
+  `tipo` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `notificaciones`
+--
+
+INSERT INTO `notificaciones` (`id`, `usuario_id`, `titulo`, `mensaje`, `leido`, `fecha_creacion`, `tipo`) VALUES
+(1, 2, 'Examen Próximo', 'Su examen será dentro de 7 días.', 0, '2026-06-04 01:11:11', 'recordatorio_7'),
+(2, 2, 'Examen Mañana', 'Su examen será mañana a las 09:15:00', 0, '2026-06-04 01:11:11', 'recordatorio_1');
 
 -- --------------------------------------------------------
 
@@ -201,7 +211,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `examenes`
 --
 ALTER TABLE `examenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `licencias`
@@ -219,7 +229,7 @@ ALTER TABLE `municipalidades`
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
