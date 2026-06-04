@@ -1,33 +1,74 @@
-.panel-info-map-muni {
-
+.tabla-municipalidades-map {
     position: absolute;
-
-    top: 120px;
-
-    right: 20px;
-
-    width: 380px;
-
-    max-width: 90vw;
-
-    max-height: 75vh;
-
-    overflow-y: auto;
-
-    background: #0D678E;
-
-    border-radius: 24px;
-
-    padding: 20px;
-
-    z-index: 999;
-
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 18px;
-
+    top: 20px;
+    left: 20px;
+    background-color: #0D678E;
     color: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    z-index: 1000;
+    width: 350px;
+    pointer-events: auto;
+}
 
+.tabla-municipalidades-map h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 10px;
+}
+
+.tabla-municipalidades-map table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-municipalidades-map tr {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.tabla-municipalidades-map tr:last-child {
+    border-bottom: none;
+}
+
+.tabla-municipalidades-map td {
+    padding: 10px 5px;
+    font-size: 14px;
+}
+
+.tabla-icono {
+    width: 25px;
+    text-align: center;
+    font-size: 16px;
+}
+
+.tabla-etiqueta {
+    font-weight: bold;
+    width: 110px;
+}
+
+.tabla-valor {
+    text-align: right;
+}
+
+.boton-seleccionar-sede {
+    margin-top: 15px;
+    --background: white;
+    --color: #0D678E;
+    font-weight: bold;
+    --border-radius: 12px;
+}
+
+@media (max-width: 768px) {
+    .tabla-municipalidades-map {
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        padding: 15px;
+    }
 }

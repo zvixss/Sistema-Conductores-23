@@ -6,26 +6,28 @@
 
     align-items: center;
 
-    padding: 30px 20px;
+    padding: 40px 20px;
 
     min-height: 100vh;
 
-    background: transparent;
 }
 
 .titulo-notific {
 
-    font-size: 32px;
+    font-size: 34px;
 
     font-weight: bold;
 
-    color: black;
-
-    margin-bottom: 30px;
+    color: white;
 
     background: #0D678E;
 
-    border-radius: 20%;
+    padding: 15px 35px;
+
+    border-radius: 20px;
+
+    margin-bottom: 30px;
+
 }
 
 .lista-notific {
@@ -45,11 +47,9 @@
 
     background: white;
 
-    border-radius: 18px;
+    border-radius: 20px;
 
-    padding: 20px;
-
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    padding: 20px 25px;
 
     display: flex;
 
@@ -57,7 +57,7 @@
 
     gap: 12px;
 
-    transition: 0.2s;
+    cursor: pointer;
 }
 
 .header-notific {
@@ -82,9 +82,15 @@
 
 .header-notific span {
 
-    font-size: 14px;
+    font-size: 13px;
 
     color: #777;
+
+    background: #f3f3f3;
+
+    padding: 6px 12px;
+
+    border-radius: 10px;
 }
 
 .card-notific p {
@@ -101,11 +107,15 @@
 .no-leida {
 
     border-left: 8px solid #420991;
+
+    background: #ffffff;
 }
 
 .leida {
 
-    opacity: 0.7;
+    border-left: 8px solid #cfcfcf;
+
+    opacity: 0.8;
 }
 
 @media (max-width: 768px) {

@@ -1,6 +1,5 @@
 import {IonContent,
   IonPage,
-  IonText,
 } from '@ionic/react';
 
 import './Admin.css';

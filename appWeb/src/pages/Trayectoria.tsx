@@ -102,13 +102,13 @@ const Trayectoria: React.FC = () => {
                             <hr className="separador-trayectoria"/>
 
                             <IonText className="texto-trayectoria">
-                                Exámenes Realizados
+                                Exámenes Agendados
                             </IonText>
 
                             {examenes.length === 0 ? (
 
                                 <p className="mensaje-vacio">
-                                    El usuario no ha realizado exámenes.
+                                    El usuario no ha agendado exámenes.
                                 </p>
 
                             ) : (

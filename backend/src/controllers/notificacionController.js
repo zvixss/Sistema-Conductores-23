@@ -87,6 +87,13 @@ const generarRecordatorios = (usuarioId) => {
                     [usuarioId, tipo],
                     (error, existe) => {
 
+                        if (error) {
+
+                            console.log(error);
+                            return;
+
+                        }
+
                         if (
                             existe.length > 0
                         ) return;

@@ -58,13 +58,9 @@ const Map: React.FC = () => {
                     <div className="mapa-container-map" onClick={() => setPanelVisible(false)}>
 
                         <TransformWrapper
-
                             initialScale={1}
-
                             minScale={1}
-
                             maxScale={2}
-
                             wheel={{ step: 0.2 }}
                         >
 
@@ -79,13 +75,10 @@ const Map: React.FC = () => {
                                     />
 
                                     <IonButton
-
                                         fill="clear"
                                         className="punto-boton-map"
                                         onClick={(e) => {
-
                                             e.stopPropagation();
-
                                             setEscuelaSeleccionado({
                                                 nombre: "Escuela Conductores Valparaíso",
                                                 direccion: "Melgarejo 59, 2362635 Valparaíso",
@@ -93,9 +86,7 @@ const Map: React.FC = () => {
                                                 licencias: "Licencias B y C",
                                                 link: "http://www.escuelaconductoresvalparaiso.cl/"
                                             });
-
                                             setPanelVisible(true);
-
                                         }}
                                     >
                                         <img
@@ -132,59 +123,23 @@ const Map: React.FC = () => {
                     />
 
                     <div className="row-info-map">
-
-                        <img
-                            src={pointIcon}
-                            alt="IconoPunto"
-                            className="icon-info-map"
-                        />
-
-                        <p>
-                            {escuelaSeleccionado.direccion}
-                        </p>
-
+                        <img src={pointIcon} alt="IconoPunto" className="icon-info-map"/>
+                        <p>{escuelaSeleccionado.direccion}</p>
                     </div>
 
                     <div className="row-info-map">
-
-                        <img
-                        src={star}
-                        alt="Star"
-                        className="icon-info-map"
-                        />
-
-                        <p>
-                            {escuelaSeleccionado.rating}
-                        </p>
-
+                        <img src={star} alt="Star" className="icon-info-map"/>
+                        <p>{escuelaSeleccionado.rating}</p>
                     </div>
 
                     <div className="row-info-map">
-
-                        <img
-                        src={books}
-                        alt="Books"
-                        className="icon-info-map"
-                        />
-
-                        <p>
-                            {escuelaSeleccionado.licencias}
-                        </p>
-
+                        <img src={books} alt="Books" className="icon-info-map"/>
+                        <p>{escuelaSeleccionado.licencias}</p>
                     </div>
 
                     <div className="row-info-map">
-
-                        <img
-                        src={globe}
-                        alt="Globe"
-                        className="icon-info-map"
-                        />
-
-                        <p>
-                            {escuelaSeleccionado.link}
-                        </p>
-
+                        <img src={globe} alt="Globe" className="icon-info-map"/>
+                        <p>{escuelaSeleccionado.link}</p>
                     </div>
 
                 </div>

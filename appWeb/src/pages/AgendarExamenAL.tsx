@@ -9,26 +9,49 @@ import './AgendarExamenAL.css';
 import MenuLateral from '../components/MenuLateral';
 import ToolbarHome from '../components/ToolbarHome';
 import Button from '../components/Button';
+import { useState, useEffect } from 'react';
 
 const AgendarExamenAL: React.FC = () => {
 
-  const municipalidades = [
-    "Tarapacá",
-    "Antofagasta",
-    "Atacama",
-    "Coquimbo",
-    "Valparaíso",
-    "Región Metropolitana",
-    "O'Higgins",
-    "Maule",
-    "Ñuble",
-    "Biobío",
-    "La Araucanía",
-    "Los Ríos",
-    "Los Lagos",
-    "Aysén",
-    "Magallanes"
-  ];
+  const [municipalidades, setMunicipalidades] = useState<any[]>([]);
+  const [muniSeleccionada, setMuniSeleccionada] = useState<number | null>(null);
+
+  useEffect(() => {
+
+      const obtenerMunicipalidades = async () => {
+
+          try {
+
+              const token = localStorage.getItem("token");
+
+              const respuesta = await fetch(
+                  "http://localhost:3000/api/examenes/municipalidades",
+                  {
+                      headers: {
+                          Authorization: `Bearer ${token}`
+                      }
+                  }
+              );
+
+              const data = await respuesta.json();
+
+              if (respuesta.ok) {
+
+                  setMunicipalidades(data);
+
+              }
+
+          } catch (error) {
+
+              console.log(error);
+
+          }
+
+      };
+
+      obtenerMunicipalidades();
+
+  }, []);
 
   return (
     <>
@@ -52,13 +75,52 @@ const AgendarExamenAL: React.FC = () => {
                             Seleccione la municipalidad donde desea realizar el examen:
                         </IonText>
 
-                        <IonSelect className="select-agendar"
+                        <IonSelect
+
+                            className="select-agendar-al"
+
                             interface="popover"
+
                             placeholder="Seleccione una municipalidad"
+
+                            value={muniSeleccionada}
+
+                            style={{ color: "black", display: "flex", justifyContent: "center", textAlign: "center", margin: "0 auto" }}
+                            
+                            onIonChange={(e) => {
+                                
+                                const valorId = e.detail.value;
+
+                                if (!valorId) return;
+
+                                const muni = municipalidades.find(m => m.id_municipalidad === valorId);
+                                
+                                if (muni) {
+                                    const nombre = muni.nombre_municipalidad.toLowerCase();
+                                    
+                                    if (nombre.includes("valparaíso") || nombre.includes("valparaiso")) {
+                                        
+                                        setMuniSeleccionada(muni.id_municipalidad);
+
+                                        localStorage.setItem(
+
+                                            "municipalidadSeleccionada",
+
+                                            muni.id_municipalidad.toString()
+
+                                        );
+                                    } else {
+                                        
+                                        alert("Estamos en fase Beta. Por ahora, nuestro sistema solo permite agendar en la municipalidad de Valparaíso.");
+                                        
+                                        setMuniSeleccionada(null);
+                                    }
+                                }
+                            }}
                         >
                             {municipalidades.map((municipalidad) => (
-                                <IonSelectOption key={municipalidad} value={municipalidad}>
-                                    {municipalidad}
+                                <IonSelectOption key={municipalidad.id_municipalidad} value={municipalidad.id_municipalidad}>
+                                    {municipalidad.nombre_municipalidad}
                                 </IonSelectOption>
                             ))}
                         </IonSelect>

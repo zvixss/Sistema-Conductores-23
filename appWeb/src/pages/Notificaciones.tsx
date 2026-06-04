@@ -63,21 +63,54 @@ const Notificaciones: React.FC = () => {
                     <div className="lista-notific">
 
                         {
-                            notificaciones.map((n) => (
+                            notificaciones.length === 0 ? (
 
-                                <div key={n.id}>
+                                <div className="card-notific">
 
                                     <h3>
-                                        {n.titulo}
+                                        Sin notificaciones
                                     </h3>
 
                                     <p>
-                                        {n.mensaje}
+                                        No tiene notificaciones pendientes.
                                     </p>
 
                                 </div>
 
-                            ))
+                            ) : (
+
+                                notificaciones.map((n) => (
+
+                                    <div
+                                        key={n.id}
+                                        className={`card-notific ${
+                                            n.leido ? "leida" : "no-leida"
+                                        }`}
+                                    >
+
+                                        <div className="header-notific">
+
+                                            <h2>
+                                                {n.titulo}
+                                            </h2>
+
+                                            <span>
+                                                {new Date(
+                                                    n.fecha_creacion
+                                                ).toLocaleDateString()}
+                                            </span>
+
+                                        </div>
+
+                                        <p>
+                                            {n.mensaje}
+                                        </p>
+
+                                    </div>
+
+                                ))
+
+                            )
                         }
 
                     </div>
