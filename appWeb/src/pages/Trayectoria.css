@@ -1,0 +1,137 @@
+.container-trayectoria {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    padding: 20px;
+}
+
+.panel-trayectoria {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    background-color: #006089;
+
+    width: 100%;
+
+    max-width: 800px;
+
+    border-radius: 25px;
+
+    padding: 20px;
+
+}
+
+.titulo-trayectoria {
+
+    font-size: 36px;
+
+    margin-bottom: 20px;
+
+    font-weight: bold;
+
+    color: WHITE;
+
+}
+
+.texto-trayectoria {
+
+    width: 100%;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    color: white;
+
+    margin-top: 20px;
+
+    margin-bottom: 20px;
+
+    border-bottom: 2px solid white;
+
+    padding-bottom: 10px;
+
+}
+
+.mensaje-vacio {
+
+    background: rgba(255,255,255,0.15);
+
+    color: white;
+
+    padding: 20px;
+
+    border-radius: 12px;
+
+    width: 100%;
+
+    text-align: center;
+
+    font-size: 18px;
+
+    margin-bottom: 20px;
+
+}
+
+.card-trayectoria {
+
+    width: 100%;
+
+    background: white;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-bottom: 15px;
+
+
+}
+
+.card-trayectoria p {
+
+    color: #222;
+
+    font-size: 17px;
+
+    margin: 8px 0;
+
+}
+
+.estado {
+
+    font-weight: bold;
+
+}
+
+.aprobado {
+
+    color: #28a745;
+
+}
+
+.rechazado {
+
+    color: #dc3545;
+
+}
+
+.separador-trayectoria {
+
+    width: 100%;
+
+    border: none;
+
+    border-top: 2px solid rgba(255,255,255,0.3);
+
+    margin: 30px 0;
+
+}

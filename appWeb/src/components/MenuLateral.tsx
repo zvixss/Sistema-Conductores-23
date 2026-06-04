@@ -74,6 +74,14 @@ const MenuLateral: React.FC = () => {
               <IonLabel>Notificaciones</IonLabel>
             </IonItem>
 
+            <IonItem
+              button
+              className="item-menu"
+              routerLink="/trayectoria"
+            >
+              <IonLabel>Trayectoria</IonLabel>
+            </IonItem>
+
             {
               usuario?.rol === "admin" && (
                 <IonItem

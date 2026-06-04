@@ -4,7 +4,8 @@ const router = express.Router();
 
 const {
     agendarExamen,
-    obtenerMunicipalidadUsuario
+    obtenerMunicipalidadUsuario,
+    obtenerTodasMunicipalidades
 } = require("../controllers/examenController");
 
 const verificarToken =
@@ -21,5 +22,12 @@ router.get(
     verificarToken,
     obtenerMunicipalidadUsuario
 );
+
+router.get(
+    "/municipalidades",
+    verificarToken,
+    obtenerTodasMunicipalidades
+);
+
 
 module.exports = router;

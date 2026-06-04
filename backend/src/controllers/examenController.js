@@ -150,9 +150,39 @@ const obtenerMunicipalidadUsuario = (req, res) => {
 
 };
 
+const obtenerTodasMunicipalidades = (req, res) => {
+
+    const query = `
+        SELECT *
+        FROM municipalidades
+    `;
+
+    db.query(
+        query,
+        (error, resultados) => {
+
+            if (error) {
+
+                console.log(error);
+
+                return res.status(500).json({
+                    mensaje: "ERROR DEL SERVIDOR"
+                });
+
+            }
+
+            res.status(200).json(resultados);
+
+        }
+    );
+
+};
+
 module.exports = {
 
     agendarExamen,
+    
+    obtenerTodasMunicipalidades,
 
     obtenerMunicipalidadUsuario
 

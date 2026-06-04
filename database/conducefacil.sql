@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 03-06-2026 a las 23:23:20
+-- Tiempo de generación: 04-06-2026 a las 02:54:24
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -35,8 +35,41 @@ CREATE TABLE `examenes` (
   `hora` time NOT NULL,
   `estado` enum('pendiente','confirmado','cancelado','realizado') DEFAULT 'pendiente',
   `fechaCreacion` timestamp NOT NULL DEFAULT current_timestamp(),
-  `id_municipalidad` int(11) DEFAULT NULL
+  `id_municipalidad` int(11) DEFAULT NULL,
+  `resultado` enum('pendiente','aprobado','reprobado') DEFAULT 'pendiente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `examenes`
+--
+
+INSERT INTO `examenes` (`id`, `usuario_id`, `tipo_examen`, `fecha`, `hora`, `estado`, `fechaCreacion`, `id_municipalidad`, `resultado`) VALUES
+(2, 2, 'Primera Licencia Clase B', '2026-06-10', '08:30:00', 'pendiente', '2026-06-03 22:03:01', 10, 'pendiente'),
+(3, 2, 'Primera Licencia Clase B', '2026-06-04', '09:15:00', 'pendiente', '2026-06-04 00:25:04', 10, 'pendiente'),
+(4, 2, 'Primera Licencia Clase B', '2026-06-08', '10:00:00', 'pendiente', '2026-06-04 00:51:43', 10, 'pendiente'),
+(5, 2, 'Primera Licencia Clase B', '2026-09-16', '13:15:00', 'pendiente', '2026-06-04 00:53:11', 10, 'pendiente');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `licencias`
+--
+
+CREATE TABLE `licencias` (
+  `id_licencia` int(11) NOT NULL,
+  `usuario_id` int(11) NOT NULL,
+  `clase` varchar(10) NOT NULL,
+  `fecha_emision` date NOT NULL,
+  `fecha_vencimiento` date NOT NULL,
+  `estado` enum('vigente','vencida','suspendida') DEFAULT 'vigente'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `licencias`
+--
+
+INSERT INTO `licencias` (`id_licencia`, `usuario_id`, `clase`, `fecha_emision`, `fecha_vencimiento`, `estado`) VALUES
+(1, 2, 'Clase B', '2025-06-01', '2031-06-01', 'vigente');
 
 -- --------------------------------------------------------
 
@@ -132,6 +165,13 @@ ALTER TABLE `examenes`
   ADD KEY `fk_examen_municipalidad` (`id_municipalidad`);
 
 --
+-- Indices de la tabla `licencias`
+--
+ALTER TABLE `licencias`
+  ADD PRIMARY KEY (`id_licencia`),
+  ADD KEY `usuario_id` (`usuario_id`);
+
+--
 -- Indices de la tabla `municipalidades`
 --
 ALTER TABLE `municipalidades`
@@ -161,7 +201,13 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `examenes`
 --
 ALTER TABLE `examenes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT de la tabla `licencias`
+--
+ALTER TABLE `licencias`
+  MODIFY `id_licencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `municipalidades`
@@ -191,6 +237,12 @@ ALTER TABLE `usuarios`
 ALTER TABLE `examenes`
   ADD CONSTRAINT `examenes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `fk_examen_municipalidad` FOREIGN KEY (`id_municipalidad`) REFERENCES `municipalidades` (`id_municipalidad`);
+
+--
+-- Filtros para la tabla `licencias`
+--
+ALTER TABLE `licencias`
+  ADD CONSTRAINT `licencias_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
 
 --
 -- Filtros para la tabla `notificaciones`

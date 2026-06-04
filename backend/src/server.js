@@ -39,3 +39,11 @@ app.use(
     "/api/notificaciones",
     notificacionRoutes
 );
+
+const trayectoriaRoutes =
+require("./routes/trayectoriaRoutes");
+
+app.use(
+    "/api/trayectoria",
+    trayectoriaRoutes
+);

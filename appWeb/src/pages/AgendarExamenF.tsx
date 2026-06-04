@@ -4,7 +4,9 @@ import {IonContent,
   IonLabel,
   IonSelect,
   IonSelectOption,
-  IonDatetime
+  IonDatetime,
+  IonDatetimeButton,
+  IonModal
 } from '@ionic/react';
 
 import './AgendarExamenF.css';
@@ -15,48 +17,57 @@ import Button from '../components/Button';
 
 const AgendarExamenF: React.FC = () => {
 
-    const [tipoExamen, setTipoExamen] = useState("");
+    const [tipoExamen, setTipoExamen] = useState("Primera Licencia Clase B");
     const [horaSeleccionada, setHoraSeleccionada] = useState("");
-    const [fechaSeleccionada, setFechaSeleccionada] = useState("");
+    const [fechaSeleccionada, setFechaSeleccionada] = useState(new Date().toISOString().split('T')[0]);
     const [ubicacion, setUbicacion] = useState("");
     const [municipalidadId, setMunicipalidadId] = useState<number | null>(null);
 
     useEffect(() => {
 
-        const tipo = localStorage.getItem("tipoExamen");
+        const cargarTodo = async () => {
+            
+            const tipo = localStorage.getItem("tipoExamen");
+            if (tipo) {
+                setTipoExamen(tipo);
+            }
 
-        if (tipo) {
+            const usuario = JSON.parse(localStorage.getItem("usuario") || "{}");
+            const idMuni = localStorage.getItem("municipalidadId");
+            const ubicacionGuardada = localStorage.getItem("ubicacionExamen");
 
-            setTipoExamen(tipo);
+            // SEGURO DE VIDA: Si la pagina anterior falló en mandar el ID, lo buscamos aquí mismo
+            if (!idMuni || idMuni === "undefined" || idMuni === "null") {
+                
+                try {
+                    const token = localStorage.getItem("token");
+                    const respuesta = await fetch(
+                        "http://localhost:3000/api/examenes/municipalidad-usuario",
+                        {
+                            headers: { Authorization: `Bearer ${token}` }
+                        }
+                    );
+                    
+                    if (respuesta.ok) {
+                        const data = await respuesta.json();
+                        setMunicipalidadId(data.id_municipalidad);
+                        setUbicacion(data.nombre_municipalidad);
+                    } else {
+                        setUbicacion(usuario.comuna || "Ubicación no encontrada");
+                    }
+                } catch (error) {
+                    console.log("Error recuperando muni:", error);
+                }
 
-        }
+            } else {
+                
+                setMunicipalidadId(Number(idMuni));
+                setUbicacion(ubicacionGuardada || usuario.comuna);
+                
+            }
+        };
 
-        const idMunicipalidad = localStorage.getItem("municipalidadId");
-
-        if (idMunicipalidad) {
-
-            setMunicipalidadId(
-                Number(idMunicipalidad)
-            );
-
-        }
-
-        const usuario = JSON.parse(
-            localStorage.getItem("usuario") || "{}"
-        );
-
-        const ubicacionGuardada =
-            localStorage.getItem("ubicacionExamen");
-
-        if (ubicacionGuardada) {
-
-            setUbicacion(ubicacionGuardada);
-
-        } else {
-
-            setUbicacion(usuario.comuna);
-
-        }
+        cargarTodo();
 
     }, []);
 
@@ -68,66 +79,74 @@ const AgendarExamenF: React.FC = () => {
         "13:15:00"
     ];
 
-    const fecha = [
-        "Lunes",
-        "Martes",
-        "Miércoles",
-        "Jueves",
-        "Viernes",
-        "Sábado",
-        "Domingo"
-    ];
-
     const agendarExamen = async () => {
 
-    try {
-
-        const token = localStorage.getItem("token");
-
-        const respuesta = await fetch(
-            "http://localhost:3000/api/examenes/agendar",
-            {
-                method: "POST",
-
-                headers: {
-                    "Content-Type":
-                        "application/json",
-
-                    Authorization:
-                        `Bearer ${token}`
-                },
-
-                body: JSON.stringify({
-
-                    tipo_examen: tipoExamen,
-
-                    fecha: fechaSeleccionada,
-
-                    hora: horaSeleccionada,
-
-                    id_municipalidad: municipalidadId
-
-                })
-
-            }
-        );
-
-        const data = await respuesta.json();
-
-        if (!respuesta.ok) {
-
-            alert(data.mensaje);
+        if (!tipoExamen) {
+            alert("Falta enviar: Tipo de examen.");
             return;
-
+        }
+        if (!fechaSeleccionada) {
+            alert("Falta enviar: Fecha.");
+            return;
+        }
+        if (!horaSeleccionada) {
+            alert("Falta enviar: Hora. Por favor selecciona una.");
+            return;
+        }
+        if (!municipalidadId) {
+            alert("Falta enviar: ID de Municipalidad. El servidor no logró cargar su comuna.");
+            return;
         }
 
-        alert(data.mensaje);
+        try {
 
-        window.location.href = "/agendar-examen-r";
+            const token = localStorage.getItem("token");
+
+            const respuesta = await fetch(
+                "http://localhost:3000/api/examenes/agendar",
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type":
+                            "application/json",
+
+                        Authorization:
+                            `Bearer ${token}`
+                    },
+
+                    body: JSON.stringify({
+
+                        tipo_examen: tipoExamen,
+
+                        fecha: fechaSeleccionada,
+
+                        hora: horaSeleccionada,
+
+                        id_municipalidad: municipalidadId
+
+                    })
+
+                }
+            );
+
+            const data = await respuesta.json();
+
+            if (!respuesta.ok) {
+
+                alert(data.mensaje);
+                return;
+
+            }
+
+            alert(data.mensaje);
+
+            window.location.href = "/agendar-examen-r";
 
         } catch (error) {
 
             console.log(error);
+            alert("Error de conexión al servidor");
 
         }
 
@@ -190,10 +209,11 @@ const AgendarExamenF: React.FC = () => {
                                     placeholder="Horas disponibles"
                                     interface="popover"
                                     onIonChange={(e) => setHoraSeleccionada(e.detail.value)}
+                                    style={{ color: "black", background: "white", borderRadius: "8px", padding: "5px 15px" }}
                                 >
                                 
                                     {horas.map((item, index) => (
-                    
+                
                                         <IonSelectOption 
                                             key={index}
                                             value={item}
@@ -209,15 +229,23 @@ const AgendarExamenF: React.FC = () => {
                                     Fechas disponibles:
                                 </IonText>
 
-                                <IonDatetime
-                                    presentation="date"
-                                    value={fechaSeleccionada}
-                                    onIonChange={(e) =>
-                                        setFechaSeleccionada(
-                                            e.detail.value as string
-                                        )
-                                    }
-                                />
+                                <div style={{ background: "white", borderRadius: "8px", padding: "5px 10px" }}>
+                                    <IonDatetimeButton datetime="datetime-id"></IonDatetimeButton>
+                                </div>
+
+                                <IonModal keepContentsMounted={true}>
+                                    <IonDatetime
+                                        id="datetime-id"
+                                        presentation="date"
+                                        color="dark"
+                                        value={fechaSeleccionada}
+                                        onIonChange={(e) =>
+                                            setFechaSeleccionada(
+                                                (e.detail.value as string).split('T')[0]
+                                            )
+                                        }
+                                    ></IonDatetime>
+                                </IonModal>
 
                             </div>
 

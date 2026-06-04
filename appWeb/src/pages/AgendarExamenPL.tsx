@@ -36,20 +36,34 @@ const AgendarExamenPL: React.FC = () => {
 
                 const data = await respuesta.json();
 
-                console.log(data);
+                if (respuesta.ok) {
 
-                setMunicipalidad(data.nombre_municipalidad);
-                setDireccion(data.direccion);
-                setMunicipalidadId(data.id_municipalidad);
+                    setMunicipalidad(data.nombre_municipalidad);
+                    setDireccion(data.direccion);
+                    setMunicipalidadId(data.id_municipalidad);
 
-                localStorage.setItem(
-                    "municipalidadId",
-                    data.id_municipalidad.toString()
-                );
+                    localStorage.setItem(
+                        "municipalidadId",
+                        data.id_municipalidad.toString()
+                    );
+
+                    localStorage.setItem(
+                        "ubicacionExamen",
+                        data.nombre_municipalidad
+                    );
+
+                    localStorage.setItem(
+                        "tipoExamen",
+                        "Primera Licencia Clase B"
+                    );
+
+                } else {
+                    console.log("Error del servidor (probablemente token vencido):", data);
+                }
 
             } catch (error) {
 
-                console.log(error);
+                console.log("Error de conexión:", error);
 
             }
 
@@ -82,7 +96,7 @@ const AgendarExamenPL: React.FC = () => {
                             </IonText>
 
                             <IonText className="text-agendar-pl">
-                                {municipalidad} ubicada en {direccion}, horarios de atención de lunes a domingo de 8:30 a 13:00 horas.
+                                {municipalidad ? `${municipalidad} ubicada en ${direccion}, horarios de atención de lunes a domingo de 8:30 a 13:00 horas.` : "Cargando datos de su municipalidad..."}
                             </IonText>
 
                             <IonText className="text-agendar-pl">

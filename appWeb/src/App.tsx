@@ -9,12 +9,13 @@ import Perfil from './pages/Perfil';
 import AgendarExamen from './pages/AgendarExamen';
 import AgendarExamenPL from './pages/AgendarExamenPL';
 import AgendarExamenAL from './pages/AgendarExamenAL';
+import AgendarExamenF from './pages/AgendarExamenF';
 import AgendarExamenR from './pages/AgendarExamenR';
 import EditarUsuario from './pages/EditarUsuario';
 import Notificaciones from './pages/Notificaciones';
 import MapMunicipal from './pages/MapMunicpal';
 import Admin from './pages/Admin';
-import AgendarExamenF from './pages/AgendarExamenF';
+import Trayectoria from './pages/Trayectoria';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -79,11 +80,11 @@ const App: React.FC = () => (
         <Route exact path="/agendar-examen-al">
           <AgendarExamenAL />
         </Route>
-        <Route exact path="/agendar-examen-r">
-          <AgendarExamenR />
-        </Route>
         <Route exact path="/agendar-examen-f">
           <AgendarExamenF />
+        </Route>
+        <Route exact path="/agendar-examen-r">
+          <AgendarExamenR />
         </Route>
         <Route exact path="/editar-usuario">
           <EditarUsuario />
@@ -96,6 +97,9 @@ const App: React.FC = () => (
         </Route>
         <Route exact path="/admin">
           <Admin />
+        </Route>
+        <Route exact path="/trayectoria">
+          <Trayectoria />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
