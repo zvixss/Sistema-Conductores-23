@@ -51,6 +51,26 @@ npm run dev
 
 ---
 
+## 📦 Dependencias y Librerías del Sistema
+
+El proyecto gestiona sus paquetes a través de NPM. Al ejecutar `npm install` en los respectivos directorios, se instalarán las siguientes dependencias principales listadas en los `package.json`:
+
+### Dependencias del Backend (`/backend`)
+* `express` (v4.x): Framework principal para montar el servidor y la API REST.
+* `mysql2`: Driver para establecer la conexión asíncrona con el motor de base de datos de XAMPP.
+* `bcrypt`: Librería criptográfica para el hasheo y validación segura de las contraseñas de los usuarios.
+* `jsonwebtoken` (JWT): Para la generación y validación de tokens de sesión, permitiendo proteger las rutas privadas.
+* `cors`: Middleware habilitado para permitir peticiones HTTP cruzadas desde el frontend.
+* `nodemon` (Dependencia de desarrollo): Para el reinicio automático del servidor en fase de pruebas.
+
+### Dependencias del Frontend (`/appWeb`)
+* `@ionic/react` y `@ionic/react-router`: Componentes base de la interfaz móvil/web y sistema de navegación.
+* `react` y `react-dom`: Core para la construcción de interfaces estructuradas.
+* `react-zoom-pan-pinch`: Herramienta implementada para la manipulación, zoom y paneo del mapa interactivo de sedes municipales.
+* `ionicons`: Paquete oficial de iconografía de Ionic para la interfaz de usuario.
+
+---
+
 ## 🧪 Pruebas Funcionales y API (Postman)
 
 Para cumplir con el requerimiento de validación de endpoints, se incluye en el repositorio la colección exportada de pruebas funcionales para Postman. 
