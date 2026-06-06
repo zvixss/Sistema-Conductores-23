@@ -1,0 +1,99 @@
+{
+  "info": {
+    "_postman_id": "d7aa8228-135f-4efe-a468-2121319e33e0",
+    "name": "My Collection",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55476693",
+    "_collection_link": "https://go.postman.co/collection/55476693-d7aa8228-135f-4efe-a468-2121319e33e0?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "API Sistema Conductores",
+      "item": [
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"correo\": \"test@gmail.com\",\r\n    \"password\": \"Queso1234\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Ver Municipalidades",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/examenes/municipalidades",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "examenes",
+                "municipalidades"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Agendar Examen",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sIjoiYWRtaW4iLCJpYXQiOjE3ODA1NDM2ODMsImV4cCI6MTc4MDU0NzI4M30.BiWcg6bxClDCeBhQkn6MnXf3_xdtTOCt1cG77IKkQVA",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/examenes/agendar",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "3000",
+              "path": [
+                "api",
+                "examenes",
+                "agendar"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ]
+}
