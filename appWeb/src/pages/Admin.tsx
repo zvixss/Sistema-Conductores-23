@@ -18,8 +18,7 @@ const Admin: React.FC = () => {
 
             try {
 
-                const token =
-                    localStorage.getItem("token");
+                const token = localStorage.getItem("token");
 
                 const respuesta = await fetch(
                     "http://localhost:3000/api/auth/usuarios",
@@ -31,8 +30,7 @@ const Admin: React.FC = () => {
                     }
                 );
 
-                const data =
-                    await respuesta.json();
+                const data = await respuesta.json();
 
                 setUsuarios(data.usuarios);
 
@@ -106,6 +104,7 @@ const Admin: React.FC = () => {
                                         fontSize="15px"
                                         background="#D9D9D9"
                                         textColor="black"
+                                        routerLink={`/admin-options/${usuario.id}`}
                                     />
                                 </div>
 

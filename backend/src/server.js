@@ -47,3 +47,8 @@ app.use(
     "/api/trayectoria",
     trayectoriaRoutes
 );
+
+app.use(
+    "/api/admin",
+    require("./routes/adminRoutes")
+);

@@ -14,8 +14,9 @@ import AgendarExamenR from './pages/AgendarExamenR';
 import EditarUsuario from './pages/EditarUsuario';
 import Notificaciones from './pages/Notificaciones';
 import MapMunicipal from './pages/MapMunicpal';
-import Admin from './pages/Admin';
 import Trayectoria from './pages/Trayectoria';
+import Admin from './pages/Admin';
+import AdminOptions from './pages/AdminOptions';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -95,11 +96,14 @@ const App: React.FC = () => (
         <Route exact path="/map-municipal">
           <MapMunicipal />
         </Route>
+        <Route exact path="/trayectoria">
+          <Trayectoria />
+        </Route>
         <Route exact path="/admin">
           <Admin />
         </Route>
-        <Route exact path="/trayectoria">
-          <Trayectoria />
+        <Route exact path="/admin-options/:id">
+          <AdminOptions />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>

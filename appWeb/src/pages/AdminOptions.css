@@ -1,0 +1,49 @@
+.layout-admin-options {
+
+    display: flex;
+
+    flex-direction: column;
+    
+    align-items: center;
+
+    width: 100%;
+
+}
+
+.panel-admin-options {
+
+    display: flex;
+
+    flex-direction: column;
+    
+    align-items: center;
+
+    background: #006089;
+
+    box-sizing: border-box;
+
+    margin: 20px;
+
+    padding: 8px;
+
+}
+
+.card-admin-options {
+
+    display: flex;
+
+    flex-direction: row;
+    
+    align-items: center;
+
+    border: black;
+
+    justify-content: space-between;
+
+    width: 100%;
+
+    font-size: 20px;
+
+    border-bottom: 2px solid white;
+
+}
