@@ -1,6 +1,7 @@
 import {
     IonContent,
-    IonPage
+    IonPage,
+    IonAlert
 } from "@ionic/react";
 
 import "./AdminOptions.css";
@@ -22,6 +23,8 @@ const AdminOptions: React.FC = () => {
     const [usuario, setUsuario] = useState<any>(null);
     const [licencias, setLicencias] = useState<any[]>([]);
     const [examenes, setExamenes] = useState<any[]>([]);
+    const [mostrarAlerta, setMostrarAlerta] = useState(false);
+    const usuarioLogueado = JSON.parse(localStorage.getItem("usuario") || "{}");
 
     useEffect(() => {
 
@@ -76,15 +79,7 @@ const AdminOptions: React.FC = () => {
 
     const eliminarUsuario = async () => {
 
-        const confirmar =
-            window.confirm(
-                "¿Eliminar usuario?"
-            );
-
-        if (!confirmar) return;
-
-        const token =
-            localStorage.getItem("token");
+        const token = localStorage.getItem("token");
 
         await fetch(
             `http://localhost:3000/api/admin/usuario/${id}`,
@@ -116,104 +111,144 @@ const AdminOptions: React.FC = () => {
 
                         <div className="panel-admin-options">
 
-                            <h2>
-                                ID usuario: {usuario.id}
-                            </h2>
+                            <h1 className="titulo-admin-options">
+                                ID: {usuario.id} | Usuario: {usuario.nombreUsuario}
+                            </h1>
 
-                            <h2>
-                                {usuario.nombreUsuario}
-                            </h2>
+                            <div className="card-admin-options">
 
-                            <div className="card-row-admin-options">
+                                <p>
+                                    RUT: {usuario.rut}
+                                </p>
 
-                                <div className="card-admin-options">
+                                <p>
+                                    Rol: {usuario.rol}
+                                </p>
 
-                                    <p>
-                                        RUT: {usuario.rut}
-                                    </p>
+                                <p>
+                                    Correo: {usuario.correo}
+                                </p>
 
-                                    <p>
-                                        Rol: {usuario.rol}
-                                    </p>
+                                <p>
+                                    Región: {usuario.region}
+                                </p>
 
-                                    <p>
-                                        Correo: {usuario.correo}
-                                    </p>
+                                <p>
+                                    Comuna: {usuario.comuna}
+                                </p>
 
-                                    <p>
-                                        Región: {usuario.region}
-                                    </p>
+                            </div>
 
-                                    <p>
-                                        Comuna: {usuario.comuna}
-                                    </p>
+                            <h2 className="titulo-admin-options">Licencias</h2>
 
-                                    <h3>Licencias</h3>
+                            <div className="lista-admin-options">
 
-                                    {licencias.length === 0 ? (
+                                {licencias.length === 0 ? (
 
-                                        <p>No posee licencias.</p>
+                                    <p>No posee licencias.</p>
 
-                                    ) : (
+                                ) : (
 
-                                        licencias.map((l) => (
+                                    licencias.map((l) => (
 
-                                            <div key={l.id}>
+                                        <div key={l.id}>
 
-                                                <p>Clase: {l.clase}</p>
-                                                <p>Estado: {l.estado}</p>
-
-                                            </div>
-
-                                        ))
-
-                                    )}
-
-                                    <h3>Exámenes</h3>
-
-                                    {examenes.map((e) => (
-
-                                        <div key={e.id}>
-
-                                            <p>{e.tipo_examen}</p>
-                                            <p>{e.fecha}</p>
-                                            <p>{e.estado}</p>
-                                            <p>{e.resultado}</p>
+                                            <p>-Clase: {l.clase}</p>
+                                            <p>-Estado: {l.estado}</p>
 
                                         </div>
 
-                                    ))}
+                                    ))
 
-                                    <div className="botones-admin-options">
+                                )}
 
-                                        <Button
-                                            texto="Actualizar Examenes"
-                                            expand='block'
-                                            ancho="60%"
-                                            fontSize="15px"
-                                            background="#D9D9D9"
-                                            textColor="black"
-                                        />
+                            </div>
 
-                                        <Button
-                                            texto="Eliminar Usuario"
-                                            expand='block'
-                                            ancho="60%"
-                                            fontSize="15px"
-                                            background="#D9D9D9"
-                                            textColor="black"
-                                            onClick={eliminarUsuario}
-                                        />
+                            <h2 className="titulo-admin-options">Exámenes</h2>
 
-                                    </div>
+                            <div className="lista-admin-options">
 
-                                </div>
+                                {examenes.length === 0 ? (
+
+                                    <p>No hay exámenes registrados.</p>
+
+                                ) : (
+                                
+                                    examenes.map((e) => (
+
+                                        <div key={e.id}>
+
+                                            <p>-{e.tipo_examen}</p>
+                                            <p>-{e.fecha}</p>
+                                            <p>-{e.estado}</p>
+                                            <p>-{e.resultado}</p>
+
+                                        </div>
+                                    ))
+
+                                )}
+
+                            </div>
+
+                            <div className="botones-admin-options">
+
+                                <Button
+                                    texto="Actualizar Examenes"
+                                    expand='block'
+                                    ancho="60%"
+                                    fontSize="15px"
+                                    background="#D9D9D9"
+                                    textColor="black"
+                                />
+
+                                <Button
+                                    texto="Eliminar Usuario"
+                                    expand='block'
+                                    ancho="60%"
+                                    fontSize="15px"
+                                    background="#D9D9D9"
+                                    textColor="black"
+                                    onClick={() => setMostrarAlerta(true)}
+                                />
 
                             </div>
 
                         </div>
 
                     </div>
+
+                    <IonAlert
+                        isOpen={mostrarAlerta}
+                        onDidDismiss={() => setMostrarAlerta(false)}
+                        header="Eliminar Usuario"
+                        message={
+                            usuarioLogueado.id === usuario.id
+                            ? "No puede eliminarse a sí mismo."
+                            : `¿Seguro que desea eliminar al usuario ${usuario.nombreUsuario}?`
+                        }
+                        buttons={
+                            usuarioLogueado.id === usuario.id
+                            ? [
+                                {
+                                    text: "Aceptar",
+                                    role: "cancel"
+                                }
+                            ]
+                            : [
+                                {
+                                    text: "Cancelar",
+                                    role: "cancel"
+                                },
+                                {
+                                    text: "Eliminar",
+                                    role: "destructive",
+                                    handler: () => {
+                                        eliminarUsuario();
+                                    }
+                                }
+                            ]
+                        }
+                    />
 
                 </IonContent>
 

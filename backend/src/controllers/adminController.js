@@ -145,6 +145,17 @@ const eliminarUsuario = (req, res) => {
 
     const id = req.params.id;
 
+    if (
+        Number(idEliminar) === req.usuario.id
+    ) {
+
+        return res.status(400).json({
+            mensaje:
+            "No puede eliminarse a sí mismo"
+        });
+
+    }
+
     db.query(
         `
         DELETE FROM usuarios
