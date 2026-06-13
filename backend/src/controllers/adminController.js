@@ -96,7 +96,47 @@ const obtenerDetalleUsuario = (req, res) => {
 
 };
 
+const obtenerExamen = (req, res) => {
+
+    const { id } = req.params;
+
+    db.query(
+        `
+        SELECT *
+        FROM examenes
+        WHERE id = ?
+        `,
+        [id],
+        (error, resultados) => {
+
+            if (error) {
+
+                return res.status(500).json({
+                    mensaje: error.message
+                });
+
+            }
+
+            if (resultados.length === 0) {
+
+                return res.status(404).json({
+                    mensaje: "Examen no encontrado"
+                });
+
+            }
+
+            res.json(resultados[0]);
+
+        }
+    );
+
+};
+
 const actualizarExamen = (req, res) => {
+
+    console.log("PUT recibido");
+    console.log(req.params);
+    console.log(req.body);
 
     const { id } = req.params;
 
@@ -145,13 +185,10 @@ const eliminarUsuario = (req, res) => {
 
     const id = req.params.id;
 
-    if (
-        Number(idEliminar) === req.usuario.id
-    ) {
+    if (Number(id) === req.usuario.id) {
 
         return res.status(400).json({
-            mensaje:
-            "No puede eliminarse a sí mismo"
+            mensaje: "No puede eliminarse a sÃ­ mismo"
         });
 
     }
@@ -181,11 +218,14 @@ const eliminarUsuario = (req, res) => {
 
 };
 
+
 module.exports = {
 
     obtenerDetalleUsuario,
 
     actualizarExamen,
+
+    obtenerExamen,
 
     eliminarUsuario
 

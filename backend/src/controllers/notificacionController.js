@@ -1,7 +1,6 @@
 const db = require("../config/db");
 
 const generarRecordatorios = (usuarioId) => {
-
     const query = `
         SELECT *
         FROM examenes
@@ -9,166 +8,88 @@ const generarRecordatorios = (usuarioId) => {
         AND estado = 'pendiente'
     `;
 
-    db.query(
-        query,
-        [usuarioId],
-        (error, examenes) => {
+    db.query(query, [usuarioId], (error, examenes) => {
+        if (error) return;
 
-            if (error) return;
+        const hoy = new Date();
 
-            const hoy = new Date();
+        examenes.forEach((examen) => {
+            const fechaExamen = new Date(examen.fecha);
+            const diferenciaDias = Math.ceil((fechaExamen - hoy) / (1000 * 60 * 60 * 24));
 
-            examenes.forEach((examen) => {
+            let titulo = "";
+            let mensaje = "";
+            let tipo = "";
 
-                const fechaExamen =
-                    new Date(examen.fecha);
+            if (diferenciaDias === 7) {
+                titulo = "Examen Próximo";
+                mensaje = "Su examen será dentro de 7 días.";
+                tipo = "recordatorio_7";
+            }
 
-                const diferenciaDias =
-                    Math.ceil(
-                        (fechaExamen - hoy)
-                        /
-                        (1000 * 60 * 60 * 24)
-                    );
+            if (diferenciaDias === 1) {
+                titulo = "Examen Mañana";
+                mensaje = `Su examen será mañana a las ${examen.hora}`;
+                tipo = "recordatorio_1";
+            }
 
-                let titulo = "";
-                let mensaje = "";
-                let tipo = "";
+            if (diferenciaDias === 0) {
+                titulo = "Examen Hoy";
+                mensaje = `Recuerde que hoy tiene examen a las ${examen.hora}`;
+                tipo = "recordatorio_hoy";
+            }
 
-                if (diferenciaDias === 7) {
+            if (!tipo) return;
 
-                    titulo =
-                        "Examen Próximo";
+            const verificar = `
+                SELECT *
+                FROM notificaciones
+                WHERE usuario_id = ?
+                AND tipo = ?
+            `;
 
-                    mensaje =
-                        "Su examen será dentro de 7 días.";
+            db.query(verificar, [usuarioId, tipo], (error, existe) => {
+                if (error) return;
+                if (existe.length > 0) return;
 
-                    tipo =
-                        "recordatorio_7";
-
-                }
-
-                if (diferenciaDias === 1) {
-
-                    titulo =
-                        "Examen Mañana";
-
-                    mensaje =
-                        `Su examen será mañana a las ${examen.hora}`;
-
-                    tipo =
-                        "recordatorio_1";
-
-                }
-
-                if (diferenciaDias === 0) {
-
-                    titulo =
-                        "Examen Hoy";
-
-                    mensaje =
-                        `Recuerde que hoy tiene examen a las ${examen.hora}`;
-
-                    tipo =
-                        "recordatorio_hoy";
-
-                }
-
-                if (!tipo) return;
-
-                const verificar = `
-                    SELECT *
-                    FROM notificaciones
-                    WHERE usuario_id = ?
-                    AND tipo = ?
-                `;
-
-                db.query(
-                    verificar,
-                    [usuarioId, tipo],
-                    (error, existe) => {
-
-                        if (error) {
-
-                            console.log(error);
-                            return;
-
-                        }
-
-                        if (
-                            existe.length > 0
-                        ) return;
-
-                        db.query(
-                            `
-                            INSERT INTO notificaciones
-                            (
-                                usuario_id,
-                                titulo,
-                                mensaje,
-                                tipo
-                            )
-                            VALUES (?, ?, ?, ?)
-                            `,
-                            [
-                                usuarioId,
-                                titulo,
-                                mensaje,
-                                tipo
-                            ]
-                        );
-
-                    }
-                );
-
+                db.query(`
+                    INSERT INTO notificaciones (usuario_id, titulo, mensaje, tipo)
+                    VALUES (?, ?, ?, ?)
+                `, [usuarioId, titulo, mensaje, tipo]);
             });
-
-        }
-    );
-
+        });
+    });
 };
 
-const obtenerNotificaciones = (
-    req,
-    res
-) => {
-
-    const usuarioId =
-        req.usuario.id;
+const obtenerNotificaciones = (req, res) => {
+    const usuarioId = req.usuario.id;
 
     generarRecordatorios(usuarioId);
 
-    db.query(
-        `
+    db.query(`
         SELECT *
         FROM notificaciones
         WHERE usuario_id = ?
         ORDER BY fecha_creacion DESC
-        `,
-        [usuarioId],
-        (error, resultados) => {
-
-            if (error) {
-
-                return res.status(500)
-                .json({
-                    mensaje:
-                    "ERROR DEL SERVIDOR"
-                });
-
-            }
-
-            res.json({
-                notificaciones:
-                resultados
-            });
-
+    `, [usuarioId], (error, resultados) => {
+        if (error) {
+            return res.status(500).json({ mensaje: "ERROR DEL SERVIDOR" });
         }
-    );
+        res.json({ notificaciones: resultados });
+    });
+};
 
+const borrarNotificacion = (req, res) => {
+    const { id } = req.params;
+    const usuarioId = req.usuario.id;
+
+    db.query(`DELETE FROM notificaciones WHERE id = ? AND usuario_id = ?`, [id, usuarioId], (error, result) => {
+        if (error) return res.status(500).json({ mensaje: "ERROR AL BORRAR" });
+        res.status(200).json({ mensaje: "NOTIFICACIÓN BORRADA" });
+    });
 };
 
 module.exports = {
-
-    obtenerNotificaciones
-
+    obtenerNotificaciones,
+    borrarNotificacion
 };

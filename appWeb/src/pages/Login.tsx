@@ -1,4 +1,5 @@
-import {IonContent,
+import {
+  IonContent,
   IonPage,
   IonInput,
   IonText
@@ -72,6 +73,12 @@ const Login: React.FC = () => {
 
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      login();
+    }
+  };
+
   return (
     <IonPage>
 
@@ -92,20 +99,22 @@ const Login: React.FC = () => {
                 <div className="entrada-login">
 
                   <IonInput 
-                    type = "text"
-                    value = {user}
+                    type="text"
+                    value={user}
                     placeholder="Usuario / RUT / Correo"
                     onIonChange={(e) => setUser(e.detail.value!)}
+                    onKeyDown={handleKeyDown}
                   />
 
                 </div>
 
                 <div className="entrada-login">
                   <IonInput 
-                    type = "password"
-                    value = {password}
+                    type="password"
+                    value={password}
                     placeholder="Contraseña"
                     onIonChange={(e) => setPassword(e.detail.value!)}
+                    onKeyDown={handleKeyDown}
                   />
 
                 </div>
@@ -120,7 +129,7 @@ const Login: React.FC = () => {
                 />
 
                 <ButtonLink 
-                  texto="¿No estás registrado? Registrater acá"
+                  texto="¿No estás registrado? Regístrate acá"
                   routerLink="/register"
                 />
 

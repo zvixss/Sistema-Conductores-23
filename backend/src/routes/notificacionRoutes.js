@@ -1,24 +1,14 @@
-const express =
-require("express");
+const express = require("express");
+const router = express.Router();
 
-const router =
-express.Router();
-
-const verificarToken =
-require("../middleware/authMiddleware");
+const verificarToken = require("../middleware/authMiddleware");
 
 const {
+    obtenerNotificaciones,
+    borrarNotificacion
+} = require("../controllers/notificacionController");
 
-    obtenerNotificaciones
-
-} = require(
-    "../controllers/notificacionController"
-);
-
-router.get(
-    "/",
-    verificarToken,
-    obtenerNotificaciones
-);
+router.get("/", verificarToken, obtenerNotificaciones);
+router.delete("/:id", verificarToken, borrarNotificacion);
 
 module.exports = router;

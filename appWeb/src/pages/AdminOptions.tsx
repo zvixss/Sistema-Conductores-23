@@ -77,6 +77,14 @@ const AdminOptions: React.FC = () => {
 
     }
 
+    const actualizarExamenes = (
+        examenId: number
+    ) => {
+
+        window.location.href = `/admin/examen/${examenId}`;
+
+    };
+
     const eliminarUsuario = async () => {
 
         const token = localStorage.getItem("token");
@@ -183,7 +191,18 @@ const AdminOptions: React.FC = () => {
                                             <p>-{e.estado}</p>
                                             <p>-{e.resultado}</p>
 
+                                            <Button
+                                                texto="Actualizar Examenes"
+                                                expand='block'
+                                                ancho="60%"
+                                                fontSize="15px"
+                                                background="#D9D9D9"
+                                                textColor="black"
+                                                onClick={() => actualizarExamenes(e.id)}
+                                            />
+
                                         </div>
+                                        
                                     ))
 
                                 )}
@@ -191,15 +210,6 @@ const AdminOptions: React.FC = () => {
                             </div>
 
                             <div className="botones-admin-options">
-
-                                <Button
-                                    texto="Actualizar Examenes"
-                                    expand='block'
-                                    ancho="60%"
-                                    fontSize="15px"
-                                    background="#D9D9D9"
-                                    textColor="black"
-                                />
 
                                 <Button
                                     texto="Eliminar Usuario"
