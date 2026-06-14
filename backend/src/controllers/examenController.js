@@ -1,4 +1,34 @@
 const db = require("../config/db");
+const nodemailer = require("nodemailer");
+
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: "conducefacil.pucv@gmail.com",
+        pass: "zdjd mgwq yxai ukxd"
+    }
+});
+
+const enviarCorreoAviso = (usuarioId, asunto, texto) => {
+    db.query(`SELECT correo, nombreUsuario FROM usuarios WHERE id = ?`, [usuarioId], (err, res) => {
+        if (!err && res.length > 0) {
+            const correoDestino = res[0].correo;
+            const nombre = res[0].nombreUsuario;
+            
+            const mailOptions = {
+                from: "ConduceFácil <conducefacil.pucv@gmail.com>",
+                to: correoDestino,
+                subject: asunto,
+                text: `Hola ${nombre},\n\n${texto}\n\nSaludos cordiales,\nEquipo ConduceFácil.`
+            };
+
+            transporter.sendMail(mailOptions, (mailErr) => {
+                if (mailErr) console.log("Error enviando correo:", mailErr);
+                else console.log("Correo enviado exitosamente a:", correoDestino);
+            });
+        }
+    });
+};
 
 const crearNotificacion = (usuarioId, titulo, mensaje, tipo) => {
     const query = `INSERT INTO notificaciones (usuario_id, titulo, mensaje, tipo) VALUES (?, ?, ?, ?)`;
@@ -39,6 +69,8 @@ const agendarExamen = (req, res) => {
             if (error) return res.status(500).json({ mensaje: "ERROR AL AGENDAR" });
             
             crearNotificacion(usuarioId, "Examen Agendado", `Tu examen de ${tipo_examen} para el ${fecha} a las ${hora} ha sido confirmado.`, "sistema");
+            enviarCorreoAviso(usuarioId, "🚗 ¡Reserva Confirmada en ConduceFácil!", `Tu examen de "${tipo_examen}" ha sido agendado exitosamente para el día ${fecha} a las ${hora}.\n\n¡Te esperamos con puntualidad!`);
+
             res.status(201).json({ mensaje: "EXAMEN AGENDADO" });
         });
     });
@@ -98,7 +130,10 @@ const reprogramarExamen = (req, res) => {
 
         db.query(queryUpdate, [fecha, hora, id, usuarioId], (err, result) => {
             if (err) return res.status(500).json({ mensaje: "ERROR AL REPROGRAMAR" });
+            
             crearNotificacion(usuarioId, "Examen Reprogramado", `Tu examen ha sido reprogramado exitosamente para el ${fecha} a las ${hora}.`, "sistema");
+            enviarCorreoAviso(usuarioId, "📅 Actualización de tu Reserva", `Te confirmamos que tu hora de examen de conducción ha sido reprogramada con éxito. Tu nueva fecha es el ${fecha} a las ${hora}.`);
+
             res.status(200).json({ mensaje: "EXAMEN REPROGRAMADO EXITOSAMENTE" });
         });
     });
@@ -115,7 +150,10 @@ const cancelarExamen = (req, res) => {
 
     db.query(queryDelete, [id, usuarioId], (error, result) => {
         if (error) return res.status(500).json({ mensaje: "ERROR AL CANCELAR" });
+        
         crearNotificacion(usuarioId, "Examen Cancelado", "Tu hora de examen de conducción ha sido cancelada correctamente.", "sistema");
+        enviarCorreoAviso(usuarioId, "❌ Cancelación de Reserva", `Te informamos que tu reserva de examen de conducción ha sido cancelada exitosamente en nuestro sistema.`);
+
         res.status(200).json({ mensaje: "EXAMEN CANCELADO CORRECTAMENTE" });
     });
 };
