@@ -1,232 +1,53 @@
 const db = require("../config/db");
 
-const obtenerDetalleUsuario = (req, res) => {
-
-    const { id } = req.params;
-
-    const queryUsuario = `
-        SELECT *
-        FROM usuarios
-        WHERE id = ?
-    `;
-
-    const queryLicencias = `
-        SELECT *
-        FROM licencias
-        WHERE usuario_id = ?
-    `;
-
-    const queryExamenes = `
-        SELECT
-            e.*,
-            m.nombre_municipalidad
-        FROM examenes e
-        LEFT JOIN municipalidades m
-            ON e.id_municipalidad =
-               m.id_municipalidad
-        WHERE e.usuario_id = ?
-        ORDER BY e.fecha DESC
-    `;
-
-    db.query(
-        queryUsuario,
-        [id],
-        (error, usuario) => {
-
-            if (error) {
-
-                console.log(error);
-
-                return res.status(500).json({
-                    mensaje: error.message
-                });
-
-            }
-
-            if (usuario.length === 0)
-                return res.status(404).json({
-                    mensaje:
-                    "Usuario no encontrado"
-                });
-
-            db.query(
-                queryLicencias,
-                [id],
-                (error, licencias) => {
-
-                    if (error) {
-
-                        console.log(error);
-
-                        return res.status(500).json({
-                            mensaje: error.message
-                        });
-
-                    }
-
-                    db.query(
-                        queryExamenes,
-                        [id],
-                        (error, examenes) => {
-
-                            if (error) {
-
-                                console.log(error);
-
-                                return res.status(500).json({
-                                    mensaje: error.message
-                                });
-
-                            }
-
-                            res.json({
-                                usuario: usuario[0],
-                                licencias,
-                                examenes
-                            });
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-    );
-
-};
-
-const obtenerExamen = (req, res) => {
-
-    const { id } = req.params;
-
-    db.query(
-        `
-        SELECT *
-        FROM examenes
-        WHERE id = ?
-        `,
-        [id],
-        (error, resultados) => {
-
-            if (error) {
-
-                return res.status(500).json({
-                    mensaje: error.message
-                });
-
-            }
-
-            if (resultados.length === 0) {
-
-                return res.status(404).json({
-                    mensaje: "Examen no encontrado"
-                });
-
-            }
-
-            res.json(resultados[0]);
-
-        }
-    );
-
-};
-
-const actualizarExamen = (req, res) => {
-
-    console.log("PUT recibido");
-    console.log(req.params);
-    console.log(req.body);
-
-    const { id } = req.params;
-
-    const {
-        estado,
-        resultado
-    } = req.body;
-
+const obtenerUsuarios = (req, res) => {
     const query = `
-        UPDATE examenes
-        SET
-            estado = ?,
-            resultado = ?
-        WHERE id = ?
+        SELECT id, nombreUsuario, rut, correo, telefono, region, comuna, rol, fechaRegistro 
+        FROM usuarios
     `;
+    db.query(query, (error, resultados) => {
+        if (error) return res.status(500).json({ mensaje: "ERROR DEL SERVIDOR" });
+        res.status(200).json({ usuarios: resultados });
+    });
+};
 
-    db.query(
-        query,
-        [
-            estado,
-            resultado,
-            id
-        ],
-        (error) => {
+const obtenerDetalleUsuario = (req, res) => {
+    const { id } = req.params;
+    const queryUsuario = `SELECT * FROM usuarios WHERE id = ?`;
+    const queryLicencias = `SELECT * FROM licencias WHERE usuario_id = ?`;
+    const queryExamenes = `SELECT * FROM examenes WHERE usuario_id = ?`;
 
-            if (error) {
+    db.query(queryUsuario, [id], (errUsuario, resUsuario) => {
+        if (errUsuario) return res.status(500).json({ mensaje: "ERROR DEL SERVIDOR" });
+        if (resUsuario.length === 0) return res.status(404).json({ mensaje: "USUARIO NO ENCONTRADO" });
 
-                return res.status(500).json({
-                    mensaje:
-                    "Error al actualizar"
+        db.query(queryLicencias, [id], (errLicencias, resLicencias) => {
+            if (errLicencias) return res.status(500).json({ mensaje: "ERROR DEL SERVIDOR" });
+
+            db.query(queryExamenes, [id], (errExamenes, resExamenes) => {
+                if (errExamenes) return res.status(500).json({ mensaje: "ERROR DEL SERVIDOR" });
+
+                res.status(200).json({
+                    usuario: resUsuario[0],
+                    licencias: resLicencias,
+                    examenes: resExamenes
                 });
-
-            }
-
-            res.json({
-                mensaje:
-                "Examen actualizado"
             });
-
-        }
-    );
-
+        });
+    });
 };
 
 const eliminarUsuario = (req, res) => {
-
-    const id = req.params.id;
-
-    if (Number(id) === req.usuario.id) {
-
-        return res.status(400).json({
-            mensaje: "No puede eliminarse a sÃ­ mismo"
-        });
-
-    }
-
-    db.query(
-        `
-        DELETE FROM usuarios
-        WHERE id = ?
-        `,
-        [id],
-        (error) => {
-
-            if (error) {
-
-                return res.status(500).json({
-                    mensaje: "Error"
-                });
-
-            }
-
-            res.json({
-                mensaje: "Usuario eliminado"
-            });
-
-        }
-    );
-
+    const { id } = req.params;
+    const query = `DELETE FROM usuarios WHERE id = ?`;
+    db.query(query, [id], (error, result) => {
+        if (error) return res.status(500).json({ mensaje: "ERROR AL ELIMINAR" });
+        res.status(200).json({ mensaje: "USUARIO ELIMINADO CORRECTAMENTE" });
+    });
 };
 
-
 module.exports = {
-
+    obtenerUsuarios,
     obtenerDetalleUsuario,
-
-    actualizarExamen,
-
-    obtenerExamen,
-
     eliminarUsuario
-
 };

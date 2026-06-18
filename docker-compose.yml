@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  db:
+    build: ./database
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql 
+    restart: always
+
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db 
+    environment:
+      - DB_HOST=db 
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=conducefacil
+
+  frontend:
+    build: ./appWeb
+    ports:
+      - "5173:5173"
+      - "8100:8100"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:

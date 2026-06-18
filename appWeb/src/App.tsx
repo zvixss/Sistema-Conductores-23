@@ -6,18 +6,18 @@ import Register from './pages/Register';
 import Home from './pages/Home';
 import Map from './pages/Map';
 import Perfil from './pages/Perfil';
+import Trayectoria from './pages/Trayectoria';
 import AgendarExamen from './pages/AgendarExamen';
 import AgendarExamenPL from './pages/AgendarExamenPL';
 import AgendarExamenAL from './pages/AgendarExamenAL';
-import AgendarExamenF from './pages/AgendarExamenF';
 import AgendarExamenR from './pages/AgendarExamenR';
-import EditarUsuario from './pages/EditarUsuario';
+import AgendarExamenF from './pages/AgendarExamenF';
+import MapMunicpal from './pages/MapMunicpal';
+import ActualizarExamen from './pages/ActualizarExamen';
 import Notificaciones from './pages/Notificaciones';
-import MapMunicipal from './pages/MapMunicpal';
-import Trayectoria from './pages/Trayectoria';
+import EditarUsuario from './pages/EditarUsuario';
 import Admin from './pages/Admin';
 import AdminOptions from './pages/AdminOptions';
-import ActualizarExamen from './pages/ActualizarExamen';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -35,15 +35,7 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
-
-/* import '@ionic/react/css/palettes/dark.always.css'; */
-/* import '@ionic/react/css/palettes/dark.class.css'; */
+/* Ionic Dark Mode */
 import '@ionic/react/css/palettes/dark.system.css';
 
 /* Theme variables */
@@ -51,63 +43,59 @@ import './theme/variables.css';
 
 setupIonicReact();
 
+const PrivateRoute: React.FC<{ component: React.FC; path: string; exact?: boolean; requiredRole?: string }> = ({ component: Component, requiredRole, ...rest }) => {
+  return (
+    <Route
+      {...rest}
+      render={(props) => {
+        const token = localStorage.getItem('token');
+        const usuarioLocal = localStorage.getItem('usuario');
+        const usuario = usuarioLocal ? JSON.parse(usuarioLocal) : null;
+
+        if (!token) {
+          return <Redirect to="/login" />;
+        }
+
+        // EL CANDADO MÁGICO: Si la ruta exige admin y el usuario no lo es, lo patea al home
+        if (requiredRole && usuario?.rol !== requiredRole) {
+          return <Redirect to="/home" />;
+        }
+
+        return <Component {...props} />;
+      }}
+    />
+  );
+};
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
       <IonRouterOutlet>
-        <Route exact path="/login">
-          <Login />
-        </Route>
+        {/* RUTAS PÚBLICAS */}
+        <Route exact path="/login" component={Login} />
+        <Route exact path="/register" component={Register} />
+        
+        {/* RUTAS PROTEGIDAS (SOLO PARA USUARIOS LOGUEADOS) */}
+        <PrivateRoute exact path="/home" component={Home} />
+        <PrivateRoute exact path="/map" component={Map} />
+        <PrivateRoute exact path="/perfil" component={Perfil} />
+        <PrivateRoute exact path="/trayectoria" component={Trayectoria} />
+        <PrivateRoute exact path="/agendar-examen" component={AgendarExamen} />
+        <PrivateRoute exact path="/agendar-examen-pl" component={AgendarExamenPL} />
+        <PrivateRoute exact path="/agendar-examen-al" component={AgendarExamenAL} />
+        <PrivateRoute exact path="/agendar-examen-r" component={AgendarExamenR} />
+        <PrivateRoute exact path="/agendar-examen-f" component={AgendarExamenF} />
+        <PrivateRoute exact path="/map-municipal" component={MapMunicpal} />
+        <PrivateRoute exact path="/actualizar-examen" component={ActualizarExamen} />
+        <PrivateRoute exact path="/notificaciones" component={Notificaciones} />
+        <PrivateRoute exact path="/editar-usuario" component={EditarUsuario} />
+        
+        {/* RUTAS SÚPER PROTEGIDAS (SOLO PARA ADMIN) */}
+        <PrivateRoute exact path="/admin" component={Admin} requiredRole="admin" />
+        <PrivateRoute exact path="/admin-options/:id" component={AdminOptions} requiredRole="admin" />
+
         <Route exact path="/">
           <Redirect to="/login" />
-        </Route>
-        <Route exact path="/register">
-          <Register />
-        </Route>
-        <Route exact path="/home">
-          <Home />
-        </Route>
-        <Route exact path="/map">
-          <Map />
-        </Route>
-        <Route exact path="/perfil">
-          <Perfil />
-        </Route>
-        <Route exact path="/agendar-examen">
-          <AgendarExamen />
-        </Route>
-        <Route exact path="/agendar-examen-pl">
-          <AgendarExamenPL />
-        </Route>
-        <Route exact path="/agendar-examen-al">
-          <AgendarExamenAL />
-        </Route>
-        <Route exact path="/agendar-examen-f">
-          <AgendarExamenF />
-        </Route>
-        <Route exact path="/agendar-examen-r">
-          <AgendarExamenR />
-        </Route>
-        <Route exact path="/editar-usuario">
-          <EditarUsuario />
-        </Route>
-        <Route exact path="/notificaciones">
-          <Notificaciones />
-        </Route>
-        <Route exact path="/map-municipal">
-          <MapMunicipal />
-        </Route>
-        <Route exact path="/trayectoria">
-          <Trayectoria />
-        </Route>
-        <Route exact path="/admin">
-          <Admin />
-        </Route>
-        <Route exact path="/admin-options/:id">
-          <AdminOptions />
-        </Route>
-        <Route exact path="/admin/examen/:examenId">
-          <ActualizarExamen />
         </Route>
       </IonRouterOutlet>
     </IonReactRouter>
