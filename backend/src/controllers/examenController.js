@@ -4,8 +4,8 @@ const nodemailer = require("nodemailer");
 const transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-        user: "conducefacil.pucv@gmail.com",
-        pass: "zdjd mgwq yxai ukxd"
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
     }
 });
 
@@ -14,9 +14,9 @@ const enviarCorreoAviso = (usuarioId, asunto, texto) => {
         if (!err && res.length > 0) {
             const correoDestino = res[0].correo;
             const nombre = res[0].nombreUsuario;
-            
+                    
             const mailOptions = {
-                from: "ConduceFácil <conducefacil.pucv@gmail.com>",
+                from: "ConduceFácil <" + process.env.EMAIL_USER + ">",
                 to: correoDestino,
                 subject: asunto,
                 text: `Hola ${nombre},\n\n${texto}\n\nSaludos cordiales,\nEquipo ConduceFácil.`

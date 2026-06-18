@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
@@ -29,7 +30,7 @@ app.use("/api/notificaciones", notificacionRoutes);
 app.use("/api/trayectoria", trayectoriaRoutes);
 app.use("/api/admin", adminRoutes);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
   console.log(`Servidor seguro corriendo en puerto ${PORT}`);
